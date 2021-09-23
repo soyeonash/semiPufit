@@ -14,7 +14,7 @@ public class User {
 		this.userId = userId;
 	}
 	
-	private String userPwd;
+	
 	
 
 }
