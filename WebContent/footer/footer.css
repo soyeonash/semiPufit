@@ -1,0 +1,16 @@
+#footer {
+  background-color: #eaeaea;
+  display: flex;
+}
+
+.footer_img {
+  width: 150px;
+  margin: auto 0 auto auto;
+}
+
+#footer_table {
+  padding: 10px;
+}
+.footer_table_title {
+  font-size: 30px;
+}
