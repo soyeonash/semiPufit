@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<form action="/user/list" method="get">
+		<input type="submit">
+	</form>
 </body>
 </html>
