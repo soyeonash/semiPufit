@@ -1,6 +1,6 @@
 package pufit.quotation.model.vo;
 
-public class quotation {
+public class Quotation {
 	private int quotation;
 
 }
