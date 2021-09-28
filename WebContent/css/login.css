@@ -1,355 +1,374 @@
-body, html{
-    margin:0px;
-    padding:0px;
-    width:100%;
-    height:100%;
-    background-color: rgb(255, 255, 255);
-    font-family: 'Noto Sans KR', sans-serif;
+body, html {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(255, 255, 255);
+	font-family: 'Noto Sans KR', sans-serif;
 }
 
-
-#content{
-    width:100%;
-    height:100%;
-    position:relative;
-}
-    #login-box{
-        width:400px;
-        height:600px;
-        background-color:rgb(255, 255, 255);
-        border-radius: 20px;
-        position:absolute;
-        left:50%;
-        transform:translateX(-50%);
-        top:50px;
-        box-shadow: 1px 1px 3px 1px lightgray;
-    }
-    h1{
-        font-family: 'Montserrat', sans-serif;
-        margin:0px;
-        padding:0px;
-        text-align: center;
-        margin-top:50px;
-    }
-        .login-bar{
-            width:250px;
-            height:40px;
-            margin-left:75px;
-            margin-top:40px;
-            border-top:0;
-            border-left:0;
-            border-right:0;
-            font-family: 'Montserrat', sans-serif;
-            font-size:17px;
-        }
-        .login-bar:focus{
-            outline:none;
-        }
-        #sect01 {
-            position: relative;
-            width: 15px; /* X 사이즈 */
-            height: 15px; /* X 세로 중앙 */
-            margin: 0 auto; /* 가운데 정렬 */
-            bottom:30px;
-            left:110px;
-          }
-          
-          #sect01 .line-box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-          }
-          
-          #sect01 .line-box > span {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            height: 2px;
-            background-color: rgb(128, 128, 128);
-          }
-          
-          #sect01 .line-01 {
-            transform: rotate(135deg) translateX(0%);
-          }
-          
-          #sect01 .line-02 {
-            transform: rotate(45deg) translateX(0%);
-          }
-
-
-          #sect02 {
-            position: relative;
-            width: 15px; /* X 사이즈 */
-            height: 15px; /* X 세로 중앙 */
-            margin: 0 auto; /* 가운데 정렬 */
-            bottom:30px;
-            left:110px;
-          }
-          
-          #sect02 .line-box {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 100%;
-            height: 100%;
-          }
-          
-          #sect02 .line-box > span {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            height: 2px;
-            background-color: rgb(128, 128, 128);
-          }
-          
-          #sect02 .line-01 {
-            transform: rotate(135deg) translateX(0%);
-          }
-          
-          #sect02 .line-02 {
-            transform: rotate(45deg) translateX(0%);
-          }
-    
-    #login-button{
-        width:100%;
-        height:100%;
-        border:0;
-        background: linear-gradient(to right, rgb(76, 196, 233), rgb(49, 180, 141));
-        width:250px;
-        height:40px;
-        margin-left:75px;
-        margin-top:30px;
-        font-family: 'Montserrat', sans-serif;
-        color:white;
-    }
-
-    #login-button:hover{
-        background: linear-gradient(to right, rgb(78, 162, 211), rgb(54, 202, 158));
-    }
-
-    #designer-button{
-      width:100%;
-      height:100%;
-      border:0;
-      background: linear-gradient(to right, rgb(114, 212, 152), rgb(210, 212, 61));
-      width:250px;
-      height:40px;
-      margin-left:75px;
-      margin-top:30px;
-      font-family: 'Montserrat', sans-serif;
-      color:white;
-  }
-
-  #designer-button:hover{
-      background: linear-gradient(to right, rgb(210, 212, 61), rgb(114, 212, 152));
-  }
-    .forid{
-        width:250px;
-        height:30px;
-        margin-left:75px;
-        margin-top:20px;
-        text-align: center;
-        line-height:30px;
-        font-size:13px;
-        font-family: 'Jua', sans-serif;
-        font-weight: lighter;
-        color:rgb(88, 88, 88);
-    }
-    .forid a{
-      color:rgb(88, 88, 88);
-      text-decoration: none;
-    }
-    .forid :active{
-        color:rgb(88, 88, 88);
-    }
-   .forid :visited{
-        color:rgb(88, 88, 88);
-    }
-
-    #forid-button{
-        width:100%;
-        height:100%;
-        border: 2px solid rgb(248, 184, 45);
-        width:250px;
-        height:40px;
-        margin-left:75px;
-        margin-top:30px;
-        font-family: 'Montserrat', sans-serif;
-        color:rgb(95, 30, 0);
-        background-color:white;
-        font-weight:bold;
-    }
-    
-    #div-forid{
-    font-size:14px;
-    color : rgb(66, 66, 66);
-    margin-top : 10px;
-    margin-left : 130px;
+#content {
+	width: 100%;
+	height: 100%;
+	position: relative;
 }
 
-    #forid-button:hover{
-        border: 2px solid rgb(255, 201, 85);
-        background-color:rgb(255, 193, 59);
-        color:white;
-    }
-    #forpw-button{
-      width:100%;
-      height:100%;
-      border: 2px solid rgb(77, 255, 100);
-      width:250px;
-      height:40px;
-      margin-left:75px;
-      margin-top:30px;
-      font-family: 'Montserrat', sans-serif;
-      color:rgb(18, 92, 0);
-      background-color:white;
-      font-weight:bold;
-  }
+#login-box {
+	width: 400px;
+	height: 600px;
+	background-color: rgb(255, 255, 255);
+	border-radius: 20px;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 50px;
+	box-shadow: 1px 1px 3px 1px lightgray;
+}
 
-  #forpw-button:hover{
-      border: 2px solid rgb(77, 255, 100);
-      background-color:rgb(119, 255, 137);
-      color:white;
-  }
+h1 {
+	font-family: 'Montserrat', sans-serif;
+	margin: 0px;
+	padding: 0px;
+	text-align: center;
+	margin-top: 50px;
+}
 
-    #sect03 {
-        position: relative;
-        width: 15px; /* X 사이즈 */
-        height: 15px; /* X 세로 중앙 */
-        margin: 0 auto; /* 가운데 정렬 */
-        bottom:30px;
-        left:110px;
-      }
-      
-      #sect03 .line-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        height: 100%;
-      }
-      
-      #sect03 .line-box > span {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        height: 2px;
-        background-color: rgb(128, 128, 128);
-      }
-      
-      #sect03 .line-01 {
-        transform: rotate(135deg) translateX(0%);
-      }
-      
-      #sect03 .line-02 {
-        transform: rotate(45deg) translateX(0%);
-      }
+.login-bar {
+	width: 250px;
+	height: 40px;
+	margin-left: 75px;
+	margin-top: 40px;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 17px;
+}
 
+.login-bar:focus {
+	outline: none;
+}
 
-      #sect04 {
-        position: relative;
-        width: 15px; /* X 사이즈 */
-        height: 15px; /* X 세로 중앙 */
-        margin: 0 auto; /* 가운데 정렬 */
-        bottom:30px;
-        left:110px;
-      }
-      
-      #sect04 .line-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        height: 100%;
-      }
-      
-      #sect04 .line-box > span {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        height: 2px;
-        background-color: rgb(128, 128, 128);
-      }
-      
-      #sect04 .line-01 {
-        transform: rotate(135deg) translateX(0%);
-      }
-      
-      #sect04 .line-02 {
-        transform: rotate(45deg) translateX(0%);
-      }
+#sect01 {
+	position: relative;
+	width: 15px; /* X 사이즈 */
+	height: 15px; /* X 세로 중앙 */
+	margin: 0 auto; /* 가운데 정렬 */
+	bottom: 30px;
+	left: 110px;
+}
 
-      #sect05 {
-        position: relative;
-        width: 15px; /* X 사이즈 */
-        height: 15px; /* X 세로 중앙 */
-        margin: 0 auto; /* 가운데 정렬 */
-        bottom:30px;
-        left:110px;
-      }
-      
-      #sect05 .line-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        height: 100%;
-      }
-      
-      #sect05 .line-box > span {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        height: 2px;
-        background-color: rgb(128, 128, 128);
-      }
-      
-      #sect05 .line-01 {
-        transform: rotate(135deg) translateX(0%);
-      }
-      
-      #sect05 .line-02 {
-        transform: rotate(45deg) translateX(0%);
-      }
+#sect01 .line-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+}
 
+#sect01 .line-box>span {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	height: 2px;
+	background-color: rgb(128, 128, 128);
+}
 
-      #sect06 {
-        position: relative;
-        width: 15px; /* X 사이즈 */
-        height: 15px; /* X 세로 중앙 */
-        margin: 0 auto; /* 가운데 정렬 */
-        bottom:30px;
-        left:110px;
-      }
-      
-      #sect06 .line-box {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        height: 100%;
-      }
-      
-      #sect06 .line-box > span {
-        position: absolute;
-        top: 50%;
-        width: 100%;
-        height: 2px;
-        background-color: rgb(128, 128, 128);
-      }
-      
-      #sect06 .line-01 {
-        transform: rotate(135deg) translateX(0%);
-      }
-      
-      #sect06 .line-02 {
-        transform: rotate(45deg) translateX(0%);
-      }
+#sect01 .line-01 {
+	transform: rotate(135deg) translateX(0%);
+}
+
+#sect01 .line-02 {
+	transform: rotate(45deg) translateX(0%);
+}
+
+#sect02 {
+	position: relative;
+	width: 15px; /* X 사이즈 */
+	height: 15px; /* X 세로 중앙 */
+	margin: 0 auto; /* 가운데 정렬 */
+	bottom: 30px;
+	left: 110px;
+}
+
+#sect02 .line-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+}
+
+#sect02 .line-box>span {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	height: 2px;
+	background-color: rgb(128, 128, 128);
+}
+
+#sect02 .line-01 {
+	transform: rotate(135deg) translateX(0%);
+}
+
+#sect02 .line-02 {
+	transform: rotate(45deg) translateX(0%);
+}
+
+#login-button {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	background: linear-gradient(to right, rgb(76, 196, 233),
+		rgb(49, 180, 141));
+	width: 250px;
+	height: 40px;
+	margin-left: 75px;
+	margin-top: 30px;
+	font-family: 'Montserrat', sans-serif;
+	color: white;
+}
+
+#login-button:hover {
+	background: linear-gradient(to right, rgb(78, 162, 211),
+		rgb(54, 202, 158));
+}
+
+#designer-button {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	background: linear-gradient(to right, rgb(114, 212, 152),
+		rgb(210, 212, 61));
+	width: 250px;
+	height: 40px;
+	margin-left: 75px;
+	margin-top: 30px;
+	font-family: 'Montserrat', sans-serif;
+	color: white;
+}
+
+#designer-button:hover {
+	background: linear-gradient(to right, rgb(210, 212, 61),
+		rgb(114, 212, 152));
+}
+
+.forid {
+	width: 250px;
+	height: 30px;
+	margin-left: 75px;
+	margin-top: 20px;
+	text-align: center;
+	line-height: 30px;
+	font-size: 13px;
+	font-family: 'Jua', sans-serif;
+	font-weight: lighter;
+	color: rgb(88, 88, 88);
+}
+
+.forid a {
+	color: rgb(88, 88, 88);
+	text-decoration: none;
+}
+
+.forid :active {
+	color: rgb(88, 88, 88);
+}
+
+.forid :visited {
+	color: rgb(88, 88, 88);
+}
+
+#forid-button {
+	width: 100%;
+	height: 100%;
+	border: 2px solid rgb(248, 184, 45);
+	width: 250px;
+	height: 40px;
+	margin-left: 75px;
+	margin-top: 30px;
+	font-family: 'Montserrat', sans-serif;
+	color: rgb(95, 30, 0);
+	background-color: white;
+	font-weight: bold;
+}
+
+#div-forid {
+	font-size: 14px;
+	color: rgb(66, 66, 66);
+	margin-top: 10px;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+}
+
+#div-forpw {
+	font-size: 14px;
+	color: rgb(66, 66, 66);
+	margin-top: 10px;
+	text-align: center;
+	font-family: 'Montserrat', sans-serif;
+}
+
+#forid-button:hover {
+	border: 2px solid rgb(255, 201, 85);
+	background-color: rgb(255, 193, 59);
+	color: white;
+}
+
+#forpw-button {
+	width: 100%;
+	height: 100%;
+	border: 2px solid rgb(77, 255, 100);
+	width: 250px;
+	height: 40px;
+	margin-left: 75px;
+	margin-top: 30px;
+	font-family: 'Montserrat', sans-serif;
+	color: rgb(18, 92, 0);
+	background-color: white;
+	font-weight: bold;
+}
+
+#forpw-button:hover {
+	border: 2px solid rgb(77, 255, 100);
+	background-color: rgb(119, 255, 137);
+	color: white;
+}
+
+#sect03 {
+	position: relative;
+	width: 15px; /* X 사이즈 */
+	height: 15px; /* X 세로 중앙 */
+	margin: 0 auto; /* 가운데 정렬 */
+	bottom: 30px;
+	left: 110px;
+}
+
+#sect03 .line-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+}
+
+#sect03 .line-box>span {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	height: 2px;
+	background-color: rgb(128, 128, 128);
+}
+
+#sect03 .line-01 {
+	transform: rotate(135deg) translateX(0%);
+}
+
+#sect03 .line-02 {
+	transform: rotate(45deg) translateX(0%);
+}
+
+#sect04 {
+	position: relative;
+	width: 15px; /* X 사이즈 */
+	height: 15px; /* X 세로 중앙 */
+	margin: 0 auto; /* 가운데 정렬 */
+	bottom: 30px;
+	left: 110px;
+}
+
+#sect04 .line-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+}
+
+#sect04 .line-box>span {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	height: 2px;
+	background-color: rgb(128, 128, 128);
+}
+
+#sect04 .line-01 {
+	transform: rotate(135deg) translateX(0%);
+}
+
+#sect04 .line-02 {
+	transform: rotate(45deg) translateX(0%);
+}
+
+#sect05 {
+	position: relative;
+	width: 15px; /* X 사이즈 */
+	height: 15px; /* X 세로 중앙 */
+	margin: 0 auto; /* 가운데 정렬 */
+	bottom: 30px;
+	left: 110px;
+}
+
+#sect05 .line-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+}
+
+#sect05 .line-box>span {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	height: 2px;
+	background-color: rgb(128, 128, 128);
+}
+
+#sect05 .line-01 {
+	transform: rotate(135deg) translateX(0%);
+}
+
+#sect05 .line-02 {
+	transform: rotate(45deg) translateX(0%);
+}
+
+#sect06 {
+	position: relative;
+	width: 15px; /* X 사이즈 */
+	height: 15px; /* X 세로 중앙 */
+	margin: 0 auto; /* 가운데 정렬 */
+	bottom: 30px;
+	left: 110px;
+}
+
+#sect06 .line-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+}
+
+#sect06 .line-box>span {
+	position: absolute;
+	top: 50%;
+	width: 100%;
+	height: 2px;
+	background-color: rgb(128, 128, 128);
+}
+
+#sect06 .line-01 {
+	transform: rotate(135deg) translateX(0%);
+}
+
+#sect06 .line-02 {
+	transform: rotate(45deg) translateX(0%);
+}

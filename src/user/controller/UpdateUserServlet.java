@@ -1,8 +1,6 @@
 package user.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,18 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import user.model.service.UserService;
+import user.model.vo.User;
 
 /**
- * Servlet implementation class SelectForIdServlet
+ * Servlet implementation class UpdateUserServlet
  */
-@WebServlet("/ajax/forId")
-public class SelectForIdServlet extends HttpServlet {
+@WebServlet("/user/update")
+public class UpdateUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectForIdServlet() {
+    public UpdateUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,21 +29,28 @@ public class SelectForIdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userName = request.getParameter("userName");
-		String userEmail = request.getParameter("userEmail");
-		String userId = new UserService().selectForId(userName, userEmail);
-		
-		PrintWriter out = response.getWriter();
-		out.print(userId);
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		String userId = request.getParameter("user-id");
+		String userPwd = request.getParameter("user-pwd");
+		String userEmail = request.getParameter("user-email");
+		String userPhone = request.getParameter("user-phone");
+		User user = new User(userId, userPwd, userEmail, userPhone);
+		
+		int result = new UserService().modifyUser(user);
+		if(result > 0) {
+			response.sendRedirect("/user/mypage");
+		}else {
+			// 오류 페이지
+		}
+		
 	}
 
 }

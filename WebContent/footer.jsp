@@ -18,81 +18,7 @@
     <link rel="stylesheet" type="text/css" href="./footer/footer.css" />
   </head>
   <body>
-    <nav class="navbar">
-      <div class="navbar_logo"></div>
-
-      <ul class="navbar_menu">
-        <li><a href="#">SHOP</a></li>
-        <li><a href="#">견적서</a></li>
-        <li><a href="#">디자이너</a></li>
-        <li><a href="#">리뷰게시판</a></li>
-        <li><a href="#">고객센터</a></li>
-      </ul>
-
-      <ul class="navbar_icons">
-        <li><i class="fas fa-user"></i></li>
-        <li><i class="fas fa-weight-hanging"></i></li>
-        <li id="alarm_btn"><i class="fas fa-bell"></i></li>
-        <li id="navbar_toogleBtn"><i class="fas fa-bars"></i></li>
-      </ul>
-    </nav>
-
-    <navside class="navbar_side">
-      <ul class="navbar_menu_side">
-        <li><a href="#">SHOP</a></li>
-        <li><a href="#">견적서</a></li>
-        <li><a href="#">디자이너</a></li>
-        <li><a href="#">리뷰게시판</a></li>
-        <li><a href="#">고객센터</a></li>
-      </ul>
-    </navside>
-
-    <main>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-    </main>
-  </body>
-  <footer>
+  	  <footer>
     <div id="footer">
       <table id="footer_table">
         <tr>
@@ -127,4 +53,5 @@
       />
     </div>
   </footer>
+  </body>
 </html>

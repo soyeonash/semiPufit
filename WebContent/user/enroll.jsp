@@ -9,6 +9,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/pufitmembership.css">
+        <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/0ac2e127d2.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" type="text/css" href="../menu/menu.css" />
+    <script src="./menu/menu.js"></script>
+    <link rel="stylesheet" type="text/css" href="../footer/footer.css" />
     <title>퍼핏 회원가입</title>
 </head>
 <body>
@@ -217,6 +226,7 @@
 			})
 		})
 	</script>
+	<jsp:include page="../header.jsp"></jsp:include>
     <div id="content">
         <h1>퍼핏에 오신것을 환영합니다</h1>
         <div id="login-box">
@@ -279,4 +289,5 @@
         </div>
     </div>
 </body>
+    <jsp:include page="../footer.jsp"></jsp:include>
 </html>

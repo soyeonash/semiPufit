@@ -18,6 +18,7 @@
 	$(document).ready(function(){
 		
 		$("#div-forid").hide();
+		$("#div-forpw").hide();
 		
 		$("#sect01").click(function(){
             $("#id-bar").val("");
@@ -66,7 +67,7 @@
             $("#forpw-block").css("display", "none");
         })
         
-        $(document).on("click", "#div-forid", function(){
+        $(document).on("click", "#forid-button", function(){
         	$.ajax({
         		type : "GET",
         		url : "/ajax/forId",
@@ -75,7 +76,39 @@
         			"userEmail" : $("#foremail-bar").val()
         		},
         		success : function(response){
-        			
+        			$("#div-forid").show();
+        			if(response == 'NO'){
+        				$("#div-forid").text("가입되지 않은 정보입니다");
+        				$("#div-forid").css("color", "red");
+        			}else{
+        				$("#div-forid").text("사용자 ID : " + response);
+        				$("#div-forid").css("font-weight", "bold");
+        			}
+        		},
+        		error : function(xhr, status, err){
+        			alert(err)
+        		}
+        	})
+        })
+        
+        $(document).on("click", "#forpw-button", function(){
+        	$.ajax({
+        		type : "GET",
+        		url : "/ajax/forPw",
+        		data : {
+        			"userId" : $("#forid-bar").val(),
+        			"userEmail" : $("#forpwemail-bar").val()
+        		},
+        		success : function(response){
+            			$("#div-forpw").show();
+        			if(response == 'NO'){
+            			$("#div-forpw").text("가입되지 않은 정보입니다");
+        				$("#div-forpw").css("color", "red");
+        			}else{
+            			$("#div-forpw").text("비밀번호가 12345678로 초기화 되었습니다");
+        				$("#div-forpw").css("font-weight", "bold");
+        			}
+        	
         		},
         		error : function(xhr, status, err){
         			alert(err)
@@ -137,7 +170,6 @@
             </div>
             <div id="forpw-block" style="display:none">
                 <h1>비밀번호 찾기</h1>
-                <form action="">
                     <input type="text" name="forid-bar" class="login-bar" placeholder="ID" id="forid-bar">
                     <div id="sect05">
                         <div class="line-box">
@@ -153,8 +185,8 @@
                           <span class="line-02"></span>
                         </div>
                     </div>
+                    <div id="div-forpw"></div>
                     <input type="submit" name="" id="forpw-button" value="찾기">
-                </form>
                 <div class="forid">
                     <p><a href="javascript:void(0)" class="for-login">로그인 | <a href="javascript:void(0)" class="for-id">아이디찾기</a></p>
                 </div>

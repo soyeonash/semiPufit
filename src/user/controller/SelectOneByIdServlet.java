@@ -1,8 +1,6 @@
 package user.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,18 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import user.model.service.UserService;
+import user.model.vo.User;
 
 /**
- * Servlet implementation class AjaxIdCheck
+ * Servlet implementation class SelectOneByIdServlet
  */
-@WebServlet("/ajax/idCheck")
-public class AjaxIdCheck extends HttpServlet {
+@WebServlet("/user/mypage")
+public class SelectOneByIdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjaxIdCheck() {
+    public SelectOneByIdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,15 +29,13 @@ public class AjaxIdCheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
-		
 		String userId = request.getParameter("userId");
-		
-		int result = new UserService().userIdCheck(userId);
-		
-		out.print(result);
-		
+		User user = new UserService().printOneById(userId);
+		if(user != null) {
+			// 성공페이지
+		}else {
+			// 실패페이지
+		}
 	}
 
 	/**

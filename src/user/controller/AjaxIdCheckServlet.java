@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import user.model.service.UserService;
 
 /**
- * Servlet implementation class SelectForIdServlet
+ * Servlet implementation class AjaxIdCheck
  */
-@WebServlet("/ajax/forId")
-public class SelectForIdServlet extends HttpServlet {
+@WebServlet("/ajax/idCheck")
+public class AjaxIdCheckServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectForIdServlet() {
+    public AjaxIdCheckServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,12 +30,14 @@ public class SelectForIdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userName = request.getParameter("userName");
-		String userEmail = request.getParameter("userEmail");
-		String userId = new UserService().selectForId(userName, userEmail);
+		request.setCharacterEncoding("UTF-8");
+		
+		String userId = request.getParameter("userId");
+		
+		int result = new UserService().userIdCheck(userId);
 		
 		PrintWriter out = response.getWriter();
-		out.print(userId);
+		out.print(result);
 		
 	}
 

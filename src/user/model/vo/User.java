@@ -40,6 +40,18 @@ public class User {
 	}
 
 
+	
+
+
+	public User(String userId, String userPwd, String userEmail, String userPhone) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userEmail = userEmail;
+		this.userPhone = userPhone;
+	}
+
+
 
 
 	public String getUserId() {

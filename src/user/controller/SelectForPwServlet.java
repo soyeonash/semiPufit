@@ -12,16 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import user.model.service.UserService;
 
 /**
- * Servlet implementation class SelectForIdServlet
+ * Servlet implementation class SelectForPwServlet
  */
-@WebServlet("/ajax/forId")
-public class SelectForIdServlet extends HttpServlet {
+@WebServlet("/ajax/forPw")
+public class SelectForPwServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SelectForIdServlet() {
+    public SelectForPwServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,12 +30,24 @@ public class SelectForIdServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userName = request.getParameter("userName");
+		String userId = request.getParameter("userId");
 		String userEmail = request.getParameter("userEmail");
-		String userId = new UserService().selectForId(userName, userEmail);
-		
+		String userPw = new UserService().selectForPw(userId, userEmail);
 		PrintWriter out = response.getWriter();
-		out.print(userId);
+		int result = 3;
+		System.out.println(userId + userEmail);
+		
+		if("NO".equals(userPw)) {
+			out.print(userPw);
+		}else {
+			result = new UserService().modifyUserPassWord(userId);
+			if(result > 0) {
+				out.print(result);
+			}else {
+				result = new UserService().modifyDesignerPassWord(userId);
+				out.print(result);
+			}
+		}
 		
 	}
 
