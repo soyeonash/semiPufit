@@ -131,7 +131,6 @@ public class QuotationDAO {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = "INSERT INTO QUOTATION VALUES(SEQ_QUOTATION.NEXTVAL,?,?,?,DEFAULT,?,?,?)";		
-		System.out.println("DAO" + quotation.getContents());
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, quotation.getQuotationSubject());
@@ -175,8 +174,7 @@ public class QuotationDAO {
 	public int deleteQuotation(Connection conn, int quotationNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String query = "DELETE FROM QUOTATION WHERE QUOTATION_NO = ?";
-		
+		String query = "DELETE FROM QUOTATION WHERE QUOTATION_NO = ?";		
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, quotationNo);

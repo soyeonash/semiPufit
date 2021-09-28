@@ -85,7 +85,6 @@ public class QuotationService {
 	public int insertQuotation(Quotation quotation) {
 		Connection conn = null;
 		int result = 0;
-		System.out.println("서비스" + quotation.getContents());
 		try {
 			conn = jdbcTemplate.createConnection();
 			result = new QuotationDAO().insertQuotation(conn,quotation);

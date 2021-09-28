@@ -44,11 +44,6 @@ public class UserCheck extends HttpServlet {
 			//request.setAttribute("userYN", "Y");
 			//writer.print("Y");
 			List<Quotation> qList = qService.quotationUserList(userId);
-			if(!qList.isEmpty()) {
-				System.out.println("ㅇㅇ 제대로옴");
-			}else {
-				System.out.println("없는데?");
-			}
 			request.setAttribute("qList", qList);
 			request.setAttribute("userTest", "test");
 			request.setAttribute("userYN", "N");
@@ -60,10 +55,10 @@ public class UserCheck extends HttpServlet {
 //			request.setAttribute("userTest", "test");
 //			request.setAttribute("userYN", "N");
 			request.getRequestDispatcher("/WEB-INF/quotation/designerQuotationList.jsp").forward(request, response);
-			System.out.println("디자이너임!");
+			//System.out.println("디자이너임!");
 			//System.out.println(request.getAttribute("userYN"));
 		} else if (result == 0 && result2 == 0) {
-			System.out.println("회원아님!");
+			//System.out.println("회원아님!");
 			//request.setAttribute("userYN", "N");
 			//writer.print("N");
 			

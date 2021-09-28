@@ -29,9 +29,7 @@ public class QuotationDetail extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("파싱전"+request.getParameter("quotationNo"));
 		int quotationNo = Integer.parseInt(request.getParameter("quotationNo"));
-		System.out.println("파싱후"+ quotationNo);
 		Quotation quotationOne = new QuotationService().printQuotationDetail(quotationNo);		
 		if(quotationOne != null) {
 			request.setAttribute("quotation", quotationOne);
