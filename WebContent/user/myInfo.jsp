@@ -21,6 +21,24 @@
             $("#pwre-feedback").hide();
             $("#phone-feedback").hide();
             $("#email-feedback").hide();
+            
+			$(document).on("keyup", "#user-pwre", function(){
+				var userPw = $("#user-pw").val();
+                var userPwre = $("#user-pwre").val();
+                
+                if(userPwre.length > 7){
+                	if(userPwre != userPw){
+                        $("#pwre-feedback").show();
+                        $("#user-pwre").focus();
+                        $("#pwre-feedback").text("위 비밀번호와 동일하게 작성해주세요");
+                        $("#pwre-feedback").css("color", "red");
+                        return false;
+                    }else{
+                        $("#pwre-feedback").hide();
+                    }
+                }
+				
+			})
 
             $(document).on("click", ".inquiry-submit", function(){
                 var userPw = $("#user-pw").val();
@@ -61,16 +79,18 @@
                 }else{
                     $("#pwre-feedback").hide();
                 }
-
-                if(userPwre != userPw){
-                    $("#pwre-feedback").show();
-                    $("#user-pwre").focus();
-                    $("#pwre-feedback").text("위 비밀번호와 동일하게 작성해주세요");
-                    $("#pwre-feedback").css("color", "red");
-                    return false;
-                }else{
-                    $("#pwre-feedback").hide();
+                if(userPwre.length > 7){
+                	if(userPwre != userPw){
+                        $("#pwre-feedback").show();
+                        $("#user-pwre").focus();
+                        $("#pwre-feedback").text("위 비밀번호와 동일하게 작성해주세요");
+                        $("#pwre-feedback").css("color", "red");
+                        return false;
+                    }else{
+                        $("#pwre-feedback").hide();
+                    }
                 }
+
 
                 if(userEmail == ""){
                     $("#email-feedback").show();
@@ -124,18 +144,26 @@
                     <div class="menu" id="menu-bar">
                         <p>마이페이지</p>
                     </div>
-                    <div class="menu">
-                        <p>회원정보 조회 / 수정</p>
-                    </div>
-                    <div class="menu">
-                        <p>구매 내역</p>
-                    </div>
-                    <div class="menu">
-                        <p>찜 목록</p>
-                    </div>
-                    <div class="menu">
-                        <p>회원 탈퇴</p>
-                    </div>
+                    <a href="">
+                        <div class="menu">
+                            <p>회원정보 조회 / 수정</p>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="menu">
+                            <p>구매 내역</p>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="menu">
+                            <p>찜 목록</p>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="menu">
+                            <p>회원 탈퇴</p>
+                        </div>
+                    </a>
                 </div>
             </div>
             <div class="page-content">

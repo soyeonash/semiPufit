@@ -9,15 +9,6 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/pufitmembership.css">
-        <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script
-      src="https://kit.fontawesome.com/0ac2e127d2.js"
-      crossorigin="anonymous"
-    ></script>
-
-    <link rel="stylesheet" type="text/css" href="../menu/menu.css" />
-    <script src="./menu/menu.js"></script>
-    <link rel="stylesheet" type="text/css" href="../footer/footer.css" />
     <title>퍼핏 회원가입</title>
 </head>
 <body>
@@ -30,6 +21,8 @@
 			$("#name-feedback").hide();
 			$("#email-feedback").hide();
 			$("#phone-feedback").hide();
+			
+			// 아이디 중복체크 ajax
 			
 			$(document).on("keyup", "#user-id", function(){
 				
@@ -70,6 +63,76 @@
 					$("#user-id").css("border", "1px solid red")
 				}
 			})
+			
+			// 비밀번호 재확인 유효성 검사
+			
+			$(document).on("keyup", "#user-pwre", function(){
+				var userPw = $("#user-pw").val();
+				var userPwre = $("#user-pwre").val();
+				
+				if(userPwre.length > 7){
+					if(userPwre != userPw){
+						$("#pwre-feedback").show();
+						$("#pwre-feedback").css("color", "red");
+						$("#pwre-feedback").text("위 비밀번호와 동일하게 입력해주세요");
+						$("#user-pwre").css("border", "1px solid red");
+						$("#user-pwre").focus();
+						return false;
+					}else{
+						$("#user-pwre").css("border", "1px solid green");
+						$("#pwre-feedback").hide();
+					}
+				}
+			})
+			
+			// 이메일 인증 
+			
+			$(document).on("click", "#membership-button", function(){
+				
+				var userEmail = $("#user-email").val();
+				var userEmailReg = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
+				if(userEmail == ""){
+					$("#email-feedback").show();
+					$("#email-feedback").css("color", "red");
+					$("#email-feedback").text("이메일을 입력해주세요");
+					$("#user-email").css("border", "1px solid red");
+					$("#user-email").focus();
+					return false;
+				}else if(!userEmail == ""){
+					$("#email-feedback").hide();
+					$("#user-email").css("border", "1px solid green");
+				}
+				
+				if(!userEmailReg.test(userEmail)){
+					$("#email-feedback").show();
+					$("#email-feedback").css("color", "red");
+					$("#email-feedback").text("이메일을 양식에 맞게 입력해주세요");
+					$("#user-email").css("border", "1px solid red");
+					$("#user-email").focus();
+					return false;
+				}else{
+					$("#user-email").css("border", "1px solid green");
+				}
+				
+				$.ajax({
+					type : "get",
+					url : "/ajax/emailCheck",
+					data : {
+						"userEmail" : userEmail
+					},
+					success : function(response){
+						
+					},
+					error : function(xhr, status, arr){
+						alert(err)
+					}
+					
+				})
+				
+			})
+			
+			
+			// 회원가입시 유효성 검사
 			
 			$(document).on("click", "#membership-submit", function(){
 				
@@ -226,7 +289,6 @@
 			})
 		})
 	</script>
-	<jsp:include page="../header.jsp"></jsp:include>
     <div id="content">
         <h1>퍼핏에 오신것을 환영합니다</h1>
         <div id="login-box">
@@ -289,5 +351,4 @@
         </div>
     </div>
 </body>
-    <jsp:include page="../footer.jsp"></jsp:include>
 </html>

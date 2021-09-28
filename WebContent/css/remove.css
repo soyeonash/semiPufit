@@ -1,8 +1,10 @@
 @charset "UTF-8";
+
 body, html{
     margin:0px;
     padding:0px;
     width:100%;
+    height:100%;
     
     font-family: 'Jua', sans-serif;
 }
@@ -18,15 +20,15 @@ a:visited{
     color:black;
 }
 
-
 #content{
     width:100%;
+    height:100%;
     position:relative;
 }
 
     .mypage-main{
         width:1200px;
-        height:900px;
+        height:600px;
         background-color:honeydew;
         border : 1px solid rgb(216, 230, 216);
         position:absolute;
@@ -35,8 +37,7 @@ a:visited{
     }
 
     .sidebar{
-        width:300px;
-        height:800px;
+
         
         float:left;
         margin-top:50px;
@@ -88,7 +89,7 @@ a:visited{
     }
     .main-content{
         width:840px;
-        height:800px;
+        height:500px;
         border : 1px solid rgb(179, 211, 0);
         margin-left:30px;
         margin-top:50px;
@@ -109,61 +110,74 @@ a:visited{
             margin-left:20px;
             margin-bottom:10px;
         }
+    
+    form>div>p{
+        
+        float:left;
+    }
 
-        input{
-            font-family: 'Jua', sans-serif;
-            font-size:13px;
-            line-height:25px;
-            margin:0px;
-            padding:0px;
-            left:10px;
-        }
+    #content-bar{
+        text-align: center;
+        width:500px;
+        height:50px;
+        margin-left:220px;
+    }
+    #pw-div{
+        width:100%;
+        height:50px;
+        display:block;
+        
+    }
 
-        form>div{
-            margin-left:40px;
-        }
-        fieldset{
-            margin:0px;
-            padding:0px;
-            margin-top : 40px;
-        }
-        .user-inquiry{
-            width:100%;
-        }
-        .inquiry-input{
-            width:200px;
-            height:25px;
-            margin-top:10px;
-            padding-left:5px;
-            border : 2px solid rgb(202, 202, 202);
-            font-size:16px;
-            color:lightslategray;
-            border-radius: 3px;
-        }
-        .inquiry-button{
-            width:45px;
-            height:30px;
-            background-color:lightgrey;
-            border:lightgrey;
-            position: relative;
-            left:10px;
-            top:-1px;
-            font-family: 'Jua', sans-serif;
-        }
-        .inquiry-button:hover{
-            background-color:lightslategray;
-            color : white;
-        }
-        .inquiry-submit{
-            width:200px;
-            height:40px;
-            background-color:rgb(179, 211, 0);
-            border-radius: 5px;
-            border: 0;
-            margin-left:250px;
-            margin-top:20px;
-        }
-        .inquiry-submit:hover{
-            background-color:rgb(0, 165, 148);
-            color:white;
-        }
+    #pw-bar{
+        width:200px;
+        height:25px;
+        margin-top:10px;
+        padding-left:5px;
+        border : 2px solid rgb(95, 95, 95);
+        font-size:16px;
+        color:lightslategray;
+        border-radius: 3px;
+        margin-left:320px;
+    }
+    #pw-bar::placeholder{
+        font-family: 'Jua', sans-serif;
+        font-size:14px;
+        line-height: 25px;
+    }
+
+    
+
+    fieldset{
+        margin:0px;
+        padding:0px;
+        margin-top : 40px;
+    }
+    .user-inquiry{
+        width:200px;
+    }
+    .inquiry-input{
+        width:200px;
+        height:25px;
+        margin-top:10px;
+        padding-left:5px;
+        border : 2px solid rgb(202, 202, 202);
+        font-size:16px;
+        color:lightslategray;
+        border-radius: 3px;
+    }
+
+    .remove-button{
+        width:100px;
+        height:40px;
+        background-color:rgb(154, 255, 154);
+        border-radius: 5px;
+        border: 0;
+        font-family: 'Jua', sans-serif;
+        margin-left:370px;
+        margin-top:30px;
+    }
+    .remove-button:hover{
+        background-color:rgb(0, 165, 148);
+        color:white;
+    }

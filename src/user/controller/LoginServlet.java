@@ -44,10 +44,9 @@ public class LoginServlet extends HttpServlet {
 		User user = new UserService().loginUser(loginId, loginPw);
 		if(user != null) {
 			if("FALSE".equals(user.getAdmin())) {
-				System.out.println("로그인 성공");
-				System.out.println(user.toString());
-//			HttpSession session = request.getSession();
-//			session.setAttribute("userId", user.getUserId());
+			HttpSession session = request.getSession();
+			session.setAttribute("userId", user.getUserId());
+			
 			}else {
 				// 관리자 페이지
 			}

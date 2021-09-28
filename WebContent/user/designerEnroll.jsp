@@ -64,6 +64,25 @@
 			}
 		})
 		
+		$(document).on("keyup", "#user-pwre", function(){
+				var userPw = $("#user-pw").val();
+				var userPwre = $("#user-pwre").val();
+				
+				if(userPwre.length > 7){
+					if(userPwre != userPw){
+						$("#pwre-feedback").show();
+						$("#pwre-feedback").css("color", "red");
+						$("#pwre-feedback").text("위 비밀번호와 동일하게 입력해주세요");
+						$("#user-pwre").css("border", "1px solid red");
+						$("#user-pwre").focus();
+						return false;
+					}else{
+						$("#user-pwre").css("border", "1px solid green");
+						$("#pwre-feedback").hide();
+					}
+				}
+			})
+		
 		$(document).on("click", "#membership-submit", function(){
 			
 			var userId = $("#user-id").val();
