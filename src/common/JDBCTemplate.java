@@ -13,7 +13,7 @@ public class JDBCTemplate {
 	
 	public JDBCTemplate() {
 		try {
-			Class.forName("orecla.jdbc.drivar.OracleDriver");
+			Class.forName("oracle.jdbc.driver.OracleDriver");
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -27,7 +27,7 @@ public class JDBCTemplate {
 	} 
 	
 	public Connection createConnection() throws SQLException {
-		String url = "jdbc:oracle:thin:@localhost:1521:XE";
+		String url = "jdbc:oracle:thin:@localhost:1521:xe";
 		String user = "PUFIT";
 		String password = "PUFIT";
 		Connection conn = DriverManager.getConnection(url,user,password);
