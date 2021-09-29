@@ -196,4 +196,19 @@ public class QuotationService {
 	}
 
 
+	public Quotation quotationDesignerDetail(int quotationNo) {
+		Connection conn = null;
+		Quotation quotation = null;
+		try {
+			conn = jdbcTemplate.createConnection();
+			quotation = new QuotationDAO().quotationDesignerDetail(conn,quotationNo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return quotation;
+	}
+
+
 }

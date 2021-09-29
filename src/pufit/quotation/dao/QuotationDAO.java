@@ -239,5 +239,34 @@ public class QuotationDAO {
 		}
 		return send;
 	}
+	public Quotation quotationDesignerDetail(Connection conn,int quotationNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Quotation quotation = null;
+		String query = "SELECT * FROM QUOTATION WHERE QUOTATION_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, quotationNo);
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				quotation = new Quotation();
+				quotation.setUserId(rset.getString("USER_ID"));
+				quotation.setDesignerId(rset.getString("DESIGNER_ID"));
+				quotation.setCategory(rset.getString("CATEGORY"));
+				quotation.setQuotationImage(rset.getNString("QUOTATION_IMAGE"));
+				quotation.setRegistrationDate(rset.getDate("QUOTATION_DATE"));
+				quotation.setQuotationSubject(rset.getString("QUOTATION_SUBJECT"));
+				quotation.setQuotationNo(rset.getInt("QUOTATION_NO"));
+				quotation.setContents(rset.getString("QUOTATION_CONTENTS"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+			
+		}
+		return quotation;
+	}
 
 }
