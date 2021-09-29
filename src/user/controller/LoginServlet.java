@@ -31,7 +31,9 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(request, response);
+		
 	}
 
 	/**
@@ -46,8 +48,9 @@ public class LoginServlet extends HttpServlet {
 			if("FALSE".equals(user.getAdmin())) {
 				System.out.println("로그인 성공");
 				System.out.println(user.toString());
-//			HttpSession session = request.getSession();
-//			session.setAttribute("userId", user.getUserId());
+			HttpSession session = request.getSession();
+			session.setAttribute("userId", user.getUserId());
+			response.sendRedirect("/");
 			}else {
 				// 관리자 페이지
 			}

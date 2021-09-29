@@ -1,0 +1,10 @@
+.footer_img{
+	    width: 100px;
+    height: 100px;
+    margin: auto 0 auto auto;
+}
+
+#footer{
+	background-color: #999;
+	display: flex;
+}
