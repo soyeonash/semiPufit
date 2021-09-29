@@ -185,5 +185,59 @@ public class QuotationDAO {
 		}
 		return result;
 	}
+	public int updateQuotation(Connection conn, Quotation quotation) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE QUOTATION SET QUOTATION_SUBJECT = ?, QUOTATION_CONTENTS = ?, CATEGORY =? WHERE QUOTATION_NO =?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, quotation.getQuotationSubject());
+			pstmt.setString(2, quotation.getContents());
+			pstmt.setString(3, quotation.getCategory());
+			pstmt.setInt(4, quotation.getQuotationNo());
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+	public int sendAlarm(Connection conn, String userId, String designerId, String alarmContents) {
+		PreparedStatement pstmt = null;
+		int alarm = 0;
+		String query = "INSERT INTO ALARM VALUES(SEQ_ALARM.NEXTVAL,?,?,?)";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, alarmContents);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, designerId);
+			alarm = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return alarm;
+	}
+	public int sendQuotation(Connection conn, String designerId, int quotationNo) {
+		int send = 0;
+		PreparedStatement pstmt = null;
+		String query = "UPDATE QUOTATION SET DESIGNER_ID = ? WHERE QUOTATION_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, designerId);
+			pstmt.setInt(2, quotationNo);
+			send = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return send;
+	}
 
 }

@@ -34,7 +34,7 @@ public class UserCheck extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// HttpSession session = request.getSession();
 		// String userId = session.getAttribute(name);
-		String userId = "khuser";
+		String userId = "khuser01";
 		QuotationService qService = new QuotationService();
 //		PrintWriter writer = response.getWriter(); 한글깨짐 오류 원흉
 		int result = qService.userCheck(userId);
@@ -51,7 +51,7 @@ public class UserCheck extends HttpServlet {
 			//System.out.println(request.getAttribute("userYN"));
 		} else if (result == 0 && result2 > 0) {
 			List<Quotation> qList = qService.quotationDesignerList(userId);
-//			request.setAttribute("qList", qList);
+			request.setAttribute("qList", qList);
 //			request.setAttribute("userTest", "test");
 //			request.setAttribute("userYN", "N");
 			request.getRequestDispatcher("/WEB-INF/quotation/designerQuotationList.jsp").forward(request, response);

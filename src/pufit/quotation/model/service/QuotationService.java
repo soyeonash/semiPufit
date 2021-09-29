@@ -135,4 +135,65 @@ public class QuotationService {
 	}
 
 
+	public int updateQuotation(Quotation quotation) {
+		int result = 0;
+		Connection conn = null;
+		
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new QuotationDAO().updateQuotation(conn,quotation);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+
+	public int sendAlarm(String userId, String designerId, String alarmContents) {
+		int alarm = 0;
+		Connection conn = null;
+		
+		try {
+			conn= jdbcTemplate.createConnection();
+			alarm = new QuotationDAO().sendAlarm(conn, userId, designerId, alarmContents);
+			if(alarm > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return alarm;
+	}
+
+
+	public int sendQuotation(String designerId, int quotationNo) {
+		int send = 0;
+		Connection conn =null;
+		
+		try {
+			conn = jdbcTemplate.createConnection();
+			send = new QuotationDAO().sendQuotation(conn, designerId, quotationNo);
+			if(send > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return send;
+	}
+
+
 }
