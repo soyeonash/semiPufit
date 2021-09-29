@@ -110,9 +110,14 @@ public class ReviewService {
 		ReviewDAO rDAO  = new ReviewDAO();
 		try {
 			conn = jdbcTemplate.createConnection();
-			rList  = rDAO.selectSearchPageNavi(conn, searchKeyword, currentPage);
+			rList  = rDAO.selectSearchReview(conn, searchKeyword, currentPage);
+			searchPageNavi = rDAO.getSearchPageNavi(conn, searchKeyword, currentPage);
+			pd.setReviewList(rList);
+			pd.setPageNavi(searchPageNavi);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
 		}
 		return pd;
 	}

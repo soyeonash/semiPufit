@@ -24,7 +24,7 @@
 		<% for(Review rOne : rList) { %>
 		<tr>
 			<td><%= rOne.getReviewNo() %></td>
-			<td><a href="/review/detail?noticeNo=<%= rOne.getReviewNo() %>"><%= rOne.getReviewSubject() %></a></td>
+			<td><a href="/review/detail?reviewNo=<%= rOne.getReviewNo() %>"><%= rOne.getReviewSubject() %></a></td>
 			<td><%= rOne.getWriterId() %></td>
 			<td><%= rOne.getRegDate() %></td>
 		</tr>

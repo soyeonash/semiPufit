@@ -191,11 +191,11 @@ public class ReviewDAO {
 		return result;
 	}
 
-	public List<Review> selectSearchPageNavi(Connection conn, String searchKeyword, int currentPage) {
+	public List<Review> selectSearchReview(Connection conn, String searchKeyword, int currentPage) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<Review> rList  = null;
-		String query = "SELECT * FROM(SELECT ROW_NUMBER() OVER(ORDER BY REVIEW_NO DESC) AS NUM, REVIEW_NO, REVIEW_SUBJECT, RIVEW_CONTENTS, WRITER_ID, REG_DATE FROM REVIEW WHERE REVIEW_SUBJECT LIKE ?) WHERE NUM BETWEEN ? AND ?";
+		String query = "SELECT * FROM(SELECT ROW_NUMBER() OVER(ORDER BY REVIEW_NO DESC) AS NUM, REVIEW_NO, REVIEW_SUBJECT, REVIEW_CONTENTS, WRITER_ID, REVIEW_DATE FROM REVIEW WHERE REVIEW_SUBJECT LIKE ?) WHERE NUM BETWEEN ? AND ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, "%"+searchKeyword+"%");
@@ -209,12 +209,81 @@ public class ReviewDAO {
 			while(rset.next()) {
 				Review review = new Review();
 				review.setReviewNo(rset.getInt("REVIEW_NO"));
-				
+				review.setReviewSubject(rset.getString("REVIEW_SUBJECT"));
+				review.setReviewContents(rset.getString("REVIEW_CONTENTS"));
+				review.setWriterId(rset.getString("WRITER_ID"));
+				review.setRegDate(rset.getDate("REVIEW_DATE"));
+				rList.add(review);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
-		return null;
+		return rList;
 	}
 
+	public String getSearchPageNavi(Connection conn, String searchKeyword, int currentPage) {
+		int pageCountPerView = 5;
+		int viewTotalCount = searchTotalCount(conn, searchKeyword);
+		int viewCountPerPage = 10;
+		int pageTotalCount = 0;
+		
+		if(viewTotalCount % viewCountPerPage > 0) {
+			pageTotalCount = viewTotalCount/ viewCountPerPage + 1;
+		}else {
+			pageTotalCount =  viewTotalCount / viewCountPerPage;
+		}
+		int startNavi = ((currentPage -1) / pageCountPerView) * pageCountPerView +1;
+		int endNavi = startNavi + pageCountPerView -1;
+		if(endNavi > pageTotalCount) {
+			endNavi = pageTotalCount;
+		}
+		boolean needPrev = true;
+		boolean needNext = true;
+		if(startNavi == 1) {
+			needPrev = false;
+		}
+		if(endNavi == pageTotalCount) {
+			needNext = false;
+		}
+		
+		StringBuilder sb = new StringBuilder();
+		if(needPrev) {
+			sb.append("<a href='/review/search?searchKeyword="+searchKeyword+"&currentPage="
+						+(startNavi-1)+"'> [이전] </a>");
+		}
+		for(int i=startNavi; i <= endNavi; i++) {
+			sb.append("<a href='/review/search?searchKeyword="+searchKeyword
+					+"&currentPage="+i+"'>"+ i + "</a>");
+		}
+		if(needNext) {
+			sb.append("<a href='/review/search?searchKeyword="+searchKeyword+"&currentPage="
+					+(endNavi+1)+"'> [다음] </a>");
+		}
+		return sb.toString();
+	}
+
+	private int searchTotalCount(Connection conn, String searchKeyword) {
+		int result = 0;
+		Statement stmt = null;
+		ResultSet rset = null;
+		String query = "SELECT COUNT(*) AS TOTALCOUNT FROM REVIEW WHERE REVIEW_SUBJECT LIKE '%" + searchKeyword  + "%'" ;
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset.next()) {
+				result = rset.getInt("TOTALCOUNT");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(stmt);
+		}
+		return result;
+	}
+
+	
 }
