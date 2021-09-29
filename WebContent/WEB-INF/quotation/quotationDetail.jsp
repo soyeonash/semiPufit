@@ -130,7 +130,7 @@
       </div><br><br><br><br>
         <a href="/quotation/quotationUpdate?quotationNo=${requestScope.quotation.quotationNo}"><input type="button" value="수정" id="update"></a>
         <a href="/quotation/quotationDelete?quotationNo=${requestScope.quotation.quotationNo}"><input type="button" value="삭제" id="delete"></a>
-        <a href="/quotation/quotationSend?quotationNo=${requestScope.quotation.quotationNo}"><input type="button" value="보내기" id="submit"></a>
+        <a href="/quotation/quotationSend"><input type="button" value="보내기" id="submit"></a>
   </div>
 	<footer class="fixed-bottom">
 		<div id="footer">
