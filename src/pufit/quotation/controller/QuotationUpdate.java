@@ -29,12 +29,11 @@ public class QuotationUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
 		int quotationNo = Integer.parseInt(request.getParameter("quotationNo"));
 		Quotation quotation = new QuotationService().printQuotationDetail(quotationNo);
-		request.setAttribute("qutationOne", quotation);
+		request.setAttribute("quotation", quotation);
 		
-		request.getRequestDispatcher("/WEB-INF/quotation/updateQuotation.jsp");
+		request.getRequestDispatcher("/WEB-INF/quotation/updateQuotation.jsp").forward(request, response);
 		
 	}
 
@@ -42,6 +41,7 @@ public class QuotationUpdate extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int quotationNo = Integer.parseInt(request.getParameter("quotationNo"));
 		int result = 0;
 		Quotation quotation = new Quotation();
@@ -53,7 +53,12 @@ public class QuotationUpdate extends HttpServlet {
 		quotation.setQuotationSubject(subject);
 		quotation.setContents(contents);
 		quotation.setQuotationNo(quotationNo);
-		//result = new QuotationService().updateQuotation(quotation);
+		result = new QuotationService().updateQuotation(quotation);
+		if(result > 0) {
+			response.sendRedirect("/quotation/userCheck");
+		}else {
+			request.getRequestDispatcher("/WEB-INF/quotation/error.jsp").forward(request, response);
+		}
 		
 	
 	}

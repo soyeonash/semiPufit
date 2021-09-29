@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	Quotation quotation = (Quotation)request.getAttribute("quotationOne");
+	Quotation quotation = (Quotation)request.getAttribute("quotation");
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
