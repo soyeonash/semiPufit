@@ -22,6 +22,8 @@
             $("#phone-feedback").hide();
             $("#email-feedback").hide();
             
+            // 비밀번호 재인증 유효성 검사
+            
 			$(document).on("keyup", "#user-pwre", function(){
 				var userPw = $("#user-pw").val();
                 var userPwre = $("#user-pwre").val();
@@ -39,6 +41,9 @@
                 }
 				
 			})
+			
+			
+			// 수정 버튼 클릭 시 유효성 검사 
 
             $(document).on("click", ".inquiry-submit", function(){
                 var userPw = $("#user-pw").val();
@@ -206,8 +211,9 @@
                             <fieldset style ="border : 0px;">
                                 <legend style="width:100%;" style="padding:0px;"><b>이메일</b>
                                     <div class="user-inquiry">
+                                        <input type="text"  class="inquiry-input" name="user-email" id="user-email" style="display:block">
+                                        <button class="inquiry-button">인증</button><br>
                                         <input type="text"  class="inquiry-input" name="user-email" id="user-email">
-                                        <button class="inquiry-button">인증</button>
                                         <div class="modify" id="email-feedback">양식에 맞게 입력해주세요</div>
                                     </div>
                                 </legend>

@@ -21,6 +21,9 @@
 			$("#name-feedback").hide();
 			$("#email-feedback").hide();
 			$("#phone-feedback").hide();
+			$("#user-emailCheck").hide();
+			
+			var emailCheck = null;
 			
 			// 아이디 중복체크 ajax
 			
@@ -87,7 +90,8 @@
 			
 			// 이메일 인증 
 			
-			$(document).on("click", "#membership-button", function(){
+			$(document).on("click", "#membership-button", function(e){
+				e.preventDefault();
 				
 				var userEmail = $("#user-email").val();
 				var userEmailReg = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
@@ -117,14 +121,18 @@
 				$.ajax({
 					type : "get",
 					url : "/ajax/emailCheck",
+					async : false,
 					data : {
 						"userEmail" : userEmail
 					},
 					success : function(response){
-						
+						$("#user-emailCheck").show();
+						emailCheck = response;
+						return true;
 					},
 					error : function(xhr, status, arr){
-						alert(err)
+						return false;
+						alert(err);
 					}
 					
 				})
@@ -264,6 +272,17 @@
 					$("#user-email").css("border", "1px solid green");
 				}
 				
+				if(emailCheck != $("#user-emailCheck").val()){
+					$("#email-feedback").show();
+					$("#email-feedback").css("color", "red");
+					$("#email-feedback").text("인증번호가 틀렸습니다 인증번호를 다시 받아주시기 바랍니다");
+					$("#user-email").css("border", "1px solid red");
+					$("#user-email").focus();
+					return false;
+				}else{
+					$("#user-email").css("border", "1px solid green");
+				}
+				
 				if(userPhone == ""){
 					$("#phone-feedback").show();
 					$("#phone-feedback").css("color", "red");
@@ -329,8 +348,9 @@
                     <fieldset style ="border : 0px; margin-top:25px;">
                         <legend style="width:100%;"><b>이메일</b>
                             <div class="membership-div">
-                                    <input type="text"  class="membership-input" placeholder="example@pufit.com" id="user-email" name="user-email" id="user-email">
+                                    <input type="text"  class="membership-input" placeholder="example@pufit.com" id="user-email" name="user-email">
                                     <button id="membership-button">인증</button>
+                                    <input type="text"  class="membership-input" placeholder="인증번호 10자리를 입력해주세요" name="user-emailCheck" id="user-emailCheck">
                                 <div class="feedback" id="email-feedback">이메일을 입력해주세요</div>
                             </div>
                         </legend>

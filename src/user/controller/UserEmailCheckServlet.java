@@ -40,15 +40,16 @@ public class UserEmailCheckServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userEmail = request.getParameter("userEmail");
 		
-		String host = "smtp.naver.com";
-		String user = "semipufit";
-		String password = "Semipufit!";
+		String host = "smtp.gmail.com";
+		String user = "pro9735aa@gmail.com";
+		String password = "TKfl123*";
 		
 		Properties props= new Properties();
 		props.put("mail.smtp.host", host);
-		props.put("mail.smtp.port", 465);
+		props.put("mail.smtp.port", "587");
 		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.enable", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
 		
 		StringBuffer temp =new StringBuffer();
         Random rnd = new Random();
@@ -67,20 +68,16 @@ public class UserEmailCheckServlet extends HttpServlet {
                 break;
             }
         }
-        String AuthenticationKey = temp.toString();
-        System.out.println(AuthenticationKey);
+        String userToEmail = temp.toString();
+        System.out.println(userToEmail);
         
-        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() {
-            protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(user,password);
-            }
-        });
+        Session session = Session.getDefaultInstance(props, new javax.mail.Authenticator() { protected PasswordAuthentication getPasswordAuthentication() { return new PasswordAuthentication(user, password); } });
         
         
         try {
         	MimeMessage msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress(user, "PUFIT"));
-			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
+			msg.setFrom(new InternetAddress(user));
+			msg.addRecipient(Message.RecipientType.TO, new InternetAddress("pro9735@naver.com"));
 			
 			msg.setSubject("안녕하세요 pufit 메일 인증입니다.");
 			msg.setText("인증번호는 : " + temp);
@@ -92,7 +89,7 @@ public class UserEmailCheckServlet extends HttpServlet {
 			e.printStackTrace();
 		}
         PrintWriter out = response.getWriter();
-        out.print(AuthenticationKey);
+        out.print(userToEmail);
 		
 	}
 

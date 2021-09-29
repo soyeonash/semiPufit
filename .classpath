@@ -13,14 +13,7 @@
 	<classpathentry kind="lib" path="C:/Users/pro97/Desktop/라이브러리/JSTL 라이브러리/taglibs-standard-impl-1.2.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/pro97/Desktop/라이브러리/JSTL 라이브러리/taglibs-standard-jstlel-1.2.5.jar"/>
 	<classpathentry kind="lib" path="C:/Users/pro97/Desktop/라이브러리/JSTL 라이브러리/taglibs-standard-spec-1.2.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/pro97/Desktop/라이브러리/이메일인증 라이브러리/smtp.jar"/>
-	<classpathentry kind="lib" path="C:/Users/pro97/Desktop/라이브러리/이메일인증 라이브러리/javax.mail-api-1.4.7.jar/javax.mail-api-1.4.7.jar"/>
-	<classpathentry kind="lib" path="C:/Users/pro97/Desktop/라이브러리/이메일인증 라이브러리/javamail1_4_7/javamail-1.4.7/lib/dsn.jar"/>
-	<classpathentry kind="lib" path="C:/Users/pro97/Desktop/라이브러리/이메일인증 라이브러리/javamail1_4_7/javamail-1.4.7/lib/gimap.jar"/>
-	<classpathentry kind="lib" path="C:/Users/pro97/Desktop/라이브러리/이메일인증 라이브러리/javamail1_4_7/javamail-1.4.7/lib/imap.jar"/>
-	<classpathentry kind="lib" path="C:/Users/pro97/Desktop/라이브러리/이메일인증 라이브러리/javamail1_4_7/javamail-1.4.7/lib/mailapi.jar"/>
-	<classpathentry kind="lib" path="C:/Users/pro97/Desktop/라이브러리/이메일인증 라이브러리/javamail1_4_7/javamail-1.4.7/lib/pop3.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
 		</attributes>
