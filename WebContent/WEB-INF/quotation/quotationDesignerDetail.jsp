@@ -59,7 +59,7 @@
       width: 230px;
       height: 30px;
     }
-    #update,#delete,#submit{
+    #yes,#no,#submit{
       width: 200px;
       height: 50px;
       background-color: rgba(230, 221, 221, 0.959);
@@ -73,11 +73,11 @@
     #subject{
       height: 30px;
     }
-    #update{
+    #yes{
       position: relative;
       right: 60px;
     }
-    #delete{
+    #no{
       position: relative;
       left: 0px;
     }
@@ -128,8 +128,12 @@
       </div>
       	<p>${requestScope.quotation.contents}<p>
       </div><br><br><br><br>
-        <a href="/quotation/quotationUpdate?quotationNo=${requestScope.quotation.quotationNo}"><input type="button" value="수락" id="update"></a>
-        <a href="/quotation/quotationDelete?quotationNo=${requestScope.quotation.quotationNo}"><input type="button" value="거절" id="delete"></a>
+      <form action="/quotation/quotationAnswer" method="GET"> 
+       <input type="submit" value="수락" id="yes" name="answer">
+       <input type="submit" value="거절" id="no" name="answer">
+       <input type="hidden" value="${requestScope.quotation.userId}" name ="userId">
+       <input type="hidden" value="${requestScope.quotation.quotationNo}" name="quotationNo">
+      </form>
   </div>
 	<footer class="fixed-bottom">
 		<div id="footer">

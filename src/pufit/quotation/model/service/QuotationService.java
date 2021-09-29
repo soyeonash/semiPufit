@@ -211,4 +211,46 @@ public class QuotationService {
 	}
 
 
+	public int answerAlarm(String userId, String alarm, String designerId) {
+		Connection conn = null;
+		int alarmResult = 0;
+		
+		try {
+			conn =jdbcTemplate.createConnection();
+			alarmResult = new QuotationDAO().answerAlarmInsert(conn, userId, alarm, designerId);
+			if(alarmResult > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return alarmResult;
+	}
+
+
+	public int denyQuotation(int quotationNo) {
+		Connection conn = null;
+		int answerResult = 0;
+		
+		try {
+			conn = jdbcTemplate.createConnection();
+			answerResult = new QuotationDAO().denyQuotation(conn, quotationNo);
+			if(answerResult > 0) {
+				JDBCTemplate.commit(conn);
+			}else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return answerResult;
+	}
+
+
 }

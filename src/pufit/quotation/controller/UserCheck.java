@@ -34,7 +34,7 @@ public class UserCheck extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// HttpSession session = request.getSession();
 		// String userId = session.getAttribute(name);
-		String userId = "khuser01";
+		String userId = "khuser";
 		QuotationService qService = new QuotationService();
 //		PrintWriter writer = response.getWriter(); 한글깨짐 오류 원흉
 		int result = qService.userCheck(userId);
