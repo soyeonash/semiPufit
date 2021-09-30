@@ -85,6 +85,10 @@
     	position: relative;
     	left:40px;
     }
+    img{
+    	height:200px;
+    	width:400px;
+    }
 </style>
 </head>
 <body>
@@ -126,8 +130,9 @@
       <div id="image-area">
       	<img src="${requestScope.quotation.quotationImage}">
       </div>
-      	<p>${requestScope.quotation.contents}<p>
-      </div><br><br><br><br>
+      <br><br>
+      	${requestScope.quotation.contents}
+      </div><br><br>
         <a href="/quotation/quotationUpdate?quotationNo=${requestScope.quotation.quotationNo}"><input type="button" value="수정" id="update"></a>
         <a href="/quotation/quotationDelete?quotationNo=${requestScope.quotation.quotationNo}"><input type="button" value="삭제" id="delete"></a>
         <a href="/quotation/quotationSend?quotationNo=${requestScope.quotation.quotationNo}"><input type="button" value="보내기" id="submit"></a>

@@ -33,7 +33,7 @@
       position: relative;
       right: 350px
     }
-    #image{
+    #isFile{
       position: relative;
       right: 280px;
       background-color: rgba(230, 221, 221, 0.959);
@@ -72,6 +72,10 @@
       position: relative;
       left: 0px;
     }
+    img{
+    	height:400px;
+    	width:400px;
+    }
     </style>
   </head>
   <body>
@@ -104,18 +108,22 @@
       </ul>
     </navside>
     <div id="quotation-contents">
-    <form action="/quotation/insertQuotation" method="POST" id="quotation">
+    <form action="/quotation/insertQuotation" method="POST" id="quotation" enctype="multipart/form-data">
       <h1>견적서</h1>
       <br>
       <h2>제목</h2>
-      <input type="text" name="subject" placeholder="제목을 입력해주세요" size="100px" id="subject" name="subject"><br><br><br>
-      <input type="button" value="이미지 파일 업로드" id="image" name="image">
+      <input type="text" placeholder="제목을 입력해주세요" size="100px" id="subject" name="subject"><br><br><br>
+      <input type="file" name="isFile" id="isFile" accept="image/*" onchange="setThumbnail(event);">
+      <input type="hidden" name ="isFileName" value="">
       <br><br>
       <select name="category" id="category">
         <option value="의류">의류</option>
         <option value="용품">용품</option>
       </select>
       <br>
+      <div id="image_container">
+      
+      </div>
       <textarea name="contents"></textarea><br><br><br><br>
        <input type="submit" value="저장" id="save"><input type="reset" value="취소" id="cancel">
     </form>
@@ -155,5 +163,18 @@
       />
     </div>
   </footer>
+  <script>
+  		function setThumbnail(event){
+  			var reader = new FileReader();
+  			
+  			reader.onload = function(event){
+  				var img = document.createElement("img");
+  				img.setAttribute("src", event.target.result);
+  				document.querySelector("div#image_container").appendChild(img);
+  			};
+  			
+  			reader.readAsDataURL(event.target.files[0]);
+  		}
+  </script>
   </body>
 </html>

@@ -1,12 +1,17 @@
 package pufit.quotation.controller;
 
 import java.io.IOException;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import pufit.quotation.model.service.QuotationService;
 import pufit.quotation.model.vo.Quotation;
@@ -41,12 +46,22 @@ public class InsertQuotation extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		//HttpSession session = request.getSession();
 		//String userId = session.getAttribute("userId");
+		String uploadFilePath = request.getServletContext().getRealPath("quotationImage");
+		System.out.println("업로드 리얼 패스:" + uploadFilePath);
+		int uploadFileLimit = 5*1024*1024;
+		String enType = "UTF-8";
+		MultipartRequest multi = new MultipartRequest(request, uploadFilePath, uploadFileLimit, enType, new DefaultFileRenamePolicy());
+		Enumeration files = multi.getFileNames();
+		String file = (String)files.nextElement();
+		String fileName = multi.getFilesystemName(file);
+		System.out.println(fileName);
+		System.out.println("../../quotationImage/" + fileName);
 		String userId = "khuser";
-		String image = "image";
-		String subject = request.getParameter("subject");
-		String category = request.getParameter("category");
-		String contents = request.getParameter("contents");
-		//String image = request.getParameter("image");
+		//String image = "image";
+		String subject = multi.getParameter("subject");
+		String category = multi.getParameter("category");
+		String contents = multi.getParameter("contents");
+		String image = "../../quotationImage/" + fileName;
 		String designerId = "";
 		Quotation quotation = new Quotation();
 		quotation.setCategory(category);
@@ -55,7 +70,7 @@ public class InsertQuotation extends HttpServlet {
 		quotation.setQuotationImage(image);
 		quotation.setUserId(userId);
 		quotation.setDesignerId(designerId);
-		//System.out.println(quotation.getContents()); 확인용
+		//System.out.println(quotation.getContents()); 확인용		
 		int result = new QuotationService().insertQuotation(quotation);
 		if(result>0) {
 			response.sendRedirect("/quotation/userCheck");
