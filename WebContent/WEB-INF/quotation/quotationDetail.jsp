@@ -29,6 +29,7 @@
 <style>
        #quotation-contents{
       text-align: center;
+      align-content: center;
 
     }
     #quotation{
@@ -62,9 +63,10 @@
     #update,#delete,#submit{
       width: 200px;
       height: 50px;
-      background-color: rgba(230, 221, 221, 0.959);
+      background-color:#a5dfd3;
       border-radius:5px 5px 5px 5px;
-      border-color: rgba(230, 221, 221, 0.959);
+      border-color:#a5dfd3;
+      color : white;
     }
     #contents-area{
       width: 800px;
@@ -86,13 +88,13 @@
     	left:40px;
     }
     img{
-    	height:200px;
-    	width:400px;
+    	height:300px;
+    	width:800px;
     }
 </style>
 </head>
 <body>
-	<nav class="navbar fiexd-top">
+	<nav class="navbar fixed-top">
 		<div class="navbar_logo"></div>
 
 		<ul class="navbar_menu">
@@ -122,22 +124,22 @@
 	<div id="quotation-contents">
       <h1>견적서</h1>
       <br>
-      <h2>제목:${requestScope.quotation.quotationSubject}</h2><span></span>
+      <h2>제목:${requestScope.quotation.quotationSubject}</h2>
       <br><br>
       <h3>${requestScope.quotation.category }</h3>
       <br>
-      <div id="contents-area">
+
       <div id="image-area">
-      	<img src="${requestScope.quotation.quotationImage}">
+      	<img src="${requestScope.quotation.quotationImage}" id="img">
       </div>
       <br><br>
       	${requestScope.quotation.contents}
-      </div><br><br>
+	<br><br>
         <a href="/quotation/quotationUpdate?quotationNo=${requestScope.quotation.quotationNo}"><input type="button" value="수정" id="update"></a>
         <a href="/quotation/quotationDelete?quotationNo=${requestScope.quotation.quotationNo}"><input type="button" value="삭제" id="delete"></a>
         <a href="/quotation/quotationSend?quotationNo=${requestScope.quotation.quotationNo}"><input type="button" value="보내기" id="submit"></a>
   </div>
-	<footer class="fixed-bottom">
+	<footer class="">
 		<div id="footer">
 			<table id="footer_table">
 				<tr>

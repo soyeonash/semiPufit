@@ -17,7 +17,7 @@ public class AlarmDAO {
 		ResultSet rset = null;
 		List<Alarm> aList = null;
 		Alarm alarm = null;
-		String query  ="SELECT * FROM ALARM WHERE RECEIVE_USER = ?";
+		String query  ="SELECT * FROM ALARM WHERE RECEIVE_USER = ?  ORDER BY ALARM_NO DESC";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -39,6 +39,23 @@ public class AlarmDAO {
 			JDBCTemplate.close(pstmt);
 		}
 		return aList;
+	}
+
+	public int deleteAlarm(Connection conn,int alarmNo) {
+		PreparedStatement pstmt =null;
+		int result = 0;
+		String query = "DELETE FROM ALARM WHERE ALARM_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, alarmNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
 	}
 
 }

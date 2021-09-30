@@ -28,4 +28,18 @@ public class AlarmService {
 		
 		return aList;
 	}
+	public int deleteAlarm(int alarmNo) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new AlarmDAO().deleteAlarm(conn, alarmNo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
 }

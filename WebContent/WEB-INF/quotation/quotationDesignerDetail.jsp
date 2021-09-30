@@ -62,9 +62,9 @@
     #yes,#no,#submit{
       width: 200px;
       height: 50px;
-      background-color: rgba(230, 221, 221, 0.959);
+      background-color: #a5dfd3;
       border-radius:5px 5px 5px 5px;
-      border-color: rgba(230, 221, 221, 0.959);
+      border-color: #a5dfd3;
     }
     #contents-area{
       width: 800px;
@@ -88,7 +88,7 @@
 </style>
 </head>
 <body>
-	<nav class="navbar fiexd-top">
+	<nav class="navbar fixed-top">
 		<div class="navbar_logo"></div>
 
 		<ul class="navbar_menu">
@@ -135,7 +135,7 @@
        <input type="hidden" value="${requestScope.quotation.quotationNo}" name="quotationNo">
       </form>
   </div>
-	<footer class="fixed-bottom">
+	<footer class="">
 		<div id="footer">
 			<table id="footer_table">
 				<tr>

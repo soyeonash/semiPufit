@@ -33,15 +33,19 @@
       position: relative;
       right: 350px
     }
-    #isFile{
+    #upload{
       position: relative;
       right: 280px;
-      background-color: rgba(230, 221, 221, 0.959);
+      background-color:#a5dfd3;
       border-radius: 5px 5px 5px 5px;
       width: 160px;
       height: 30px;
       top: 30px;
-      border-color:  rgba(230, 221, 221, 0.959);
+      border-color:#a5dfd3;
+      color: white;
+    }
+    #isFile{
+    	display:none;
     }
     #category{
       position: relative;
@@ -53,9 +57,10 @@
     #save,#cancel{
       width: 200px;
       height: 50px;
-      background-color: rgba(230, 221, 221, 0.959);
+      background-color:#a5dfd3;
       border-radius:5px 5px 5px 5px;
-      border-color: rgba(230, 221, 221, 0.959);
+      border-color:#a5dfd3;
+      color : white;
     }
     textarea{
       width: 800px;
@@ -79,7 +84,7 @@
     </style>
   </head>
   <body>
-    <nav class="navbar">
+    <nav class="navbar fixed-top">
       <div class="navbar_logo"></div>
 
       <ul class="navbar_menu">
@@ -113,8 +118,10 @@
       <br>
       <h2>제목</h2>
       <input type="text" placeholder="제목을 입력해주세요" size="100px" id="subject" name="subject"><br><br><br>
+      <label for="isFile" id="upload">
+      	이미지 업로드
+      </label>
       <input type="file" name="isFile" id="isFile" accept="image/*" onchange="setThumbnail(event);">
-      <input type="hidden" name ="isFileName" value="">
       <br><br>
       <select name="category" id="category">
         <option value="의류">의류</option>

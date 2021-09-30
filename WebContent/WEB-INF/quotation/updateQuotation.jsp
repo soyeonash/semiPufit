@@ -38,16 +38,21 @@
       position: relative;
       right: 350px
     }
-    #image{
+    #upload{
       position: relative;
       right: 280px;
-      background-color: rgba(230, 221, 221, 0.959);
+      background-color: #a5dfd3;
       border-radius: 5px 5px 5px 5px;
       width: 160px;
       height: 30px;
       top: 30px;
-      border-color:  rgba(230, 221, 221, 0.959);
+      border-color:  #a5dfd3;
+      color:white;
     }
+    #isFile{
+    	display:none;	
+    }
+    
     #category{
       position: relative;
       left: 255px;
@@ -56,11 +61,12 @@
       height: 30px;
     }
     #save,#cancel, #submit{
-      width: 170px;
+      width: 200px;
       height: 50px;
-      background-color: rgba(230, 221, 221, 0.959);
+      background-color:#a5dfd3;
       border-radius:5px 5px 5px 5px;
-      border-color: rgba(230, 221, 221, 0.959);
+      border-color:#a5dfd3;
+      color : white;
     }
     textarea{
       width: 730px;
@@ -83,10 +89,14 @@
       position: relative;
       left: 320px;
     }
+     img{
+    	height:300px;
+    	width:800px;
+    }
   </style>
   </head>
   <body>
-    <nav class="navbar fiexd-top">
+    <nav class="navbar fixed-top">
       <div class="navbar_logo"></div>
 
       <ul class="navbar_menu">
@@ -120,24 +130,27 @@
       <br>
       <h2>제목</h2>
       <input type="text" name="subject" placeholder="제목을 입력해주세요" size="100px" id="subject" value="${requestScope.quotation.quotationSubject }"><br><br><br>
-      <input type="button" value="이미지 파일 업로드" id="image">
+     <label for="isFile" id="upload">
+      	이미지 업로드
+      </label>
+      <input type="file" name="isFile" id="isFile" accept="image/*" onchange="setThumbnail(event);">
       <br><br>
       <select name="category" id="category">
         <option value="의류">의류</option>
         <option value="용품">용품</option>
       </select>
       <br>
-      <textarea name="contents">
-      <div id="image-area">
-      	<img src="${requestScope.quotation.quotationImage }">
+      <div id="image_container">
+      	<img src="${requestScope.quotation.quotationImage }" id="img">
       </div>
+      <textarea name="contents">
       	${requestScope.quotation.contents}
       </textarea><br><br><br><br>
       <input type="hidden" value="${requestScope.quotation.quotationNo }" name="quotationNo">
       <input type="submit" value="수정" id="save"><input type="button" value="취소" id="cancel">
     </form>
   </div>
-  <footer class="fixed-bottom">
+  <footer class="">
     <div id="footer">
       <table id="footer_table">
         <tr>
@@ -172,5 +185,18 @@
       />
     </div>
   </footer>
+  <script>
+  function setThumbnail(event){
+  			var reader = new FileReader();
+  			
+  			reader.onload = function(event){ 				
+  				var img = document.querySelector("#img");
+  				img.setAttribute("src", event.target.result);
+  				document.querySelector("div#image_container").appendChild(img);
+  			};
+  			
+  			reader.readAsDataURL(event.target.files[0]);
+  		}
+  </script>
   </body>
 </html>

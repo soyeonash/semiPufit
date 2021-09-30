@@ -20,11 +20,9 @@
 		<tr>
 			<td>${aOne.sendUser}</td>
 			<td>${aOne.alarmContents}</td>
-			<td><a href="/alarm/deleteAlarm?alarmNo=${raOne.alarmNo}"><button>삭제</button></a>
+			<td><a href="/alarm/deleteAlarm?alarmNo=${aOne.alarmNo}"><button>삭제</button></a></td>
 		</tr>		
 		</c:forEach>
 	</table>
-
-
 </body>
 </html>

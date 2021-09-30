@@ -75,7 +75,7 @@
 </style>
 </head>
 <body>
-	<nav class="navbar fiexd-top">
+	<nav class="navbar fixed-top">
 		<div class="navbar_logo"></div>
 
 		<ul class="navbar_menu">
