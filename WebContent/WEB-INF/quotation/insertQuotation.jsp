@@ -73,8 +73,8 @@
       left: 0px;
     }
     img{
-    	height:400px;
-    	width:400px;
+    	height:300px;
+    	width:800px;
     }
     </style>
   </head>
@@ -122,8 +122,9 @@
       </select>
       <br>
       <div id="image_container">
-      
+      	<img id="img" alt="이미지가 없습니다">
       </div>
+      <br><br>
       <textarea name="contents"></textarea><br><br><br><br>
        <input type="submit" value="저장" id="save"><input type="reset" value="취소" id="cancel">
     </form>
@@ -167,8 +168,8 @@
   		function setThumbnail(event){
   			var reader = new FileReader();
   			
-  			reader.onload = function(event){
-  				var img = document.createElement("img");
+  			reader.onload = function(event){ 				
+  				var img = document.querySelector("#img");
   				img.setAttribute("src", event.target.result);
   				document.querySelector("div#image_container").appendChild(img);
   			};
