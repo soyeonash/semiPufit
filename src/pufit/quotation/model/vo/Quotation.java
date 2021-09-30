@@ -73,7 +73,6 @@ public class Quotation {
 		this.designerId = designerId;
 	}
 	
-	
 
 	public String getContents() {
 		return contents;

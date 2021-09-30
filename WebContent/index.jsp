@@ -39,7 +39,9 @@
       <ul class="navbar_icons">
         <li><i class="fas fa-user"></i></li>
         <li><i class="fas fa-weight-hanging"></i></li>
-        <a href = "/alarm/selectAlarm"><li id="alarm_btn" id="alarm"><i class="fas fa-bell"></i></li></a>
+<!--         <a href = "/alarm/selectAlarm"> -->
+        <li id="alarm_btn" id="alarm"><i class="fas fa-bell"></i></li>
+<!--         </a> -->
         <li id="navbar_toogleBtn"><i class="fas fa-bars"></i></li>
       </ul>
     </nav>
@@ -89,28 +91,28 @@
     </div>
   </footer>
     <script>
-//     document.querySelector("#alarm").addEventListener("click", function(){
-// 		alert("test");
-//     	$.ajax({
-// 			type:"GET",
-// 			url: "/alarm/selectAlarm",
-// 			data: {"userId" : userId},
-// 			error:function(xhr, status, err){
-// 				alert(err);
-// 			};
-// 			success:function(data){
-// 				if(data == "Y"){
-// 					alert("성공");													
+    document.querySelector("#alarm").addEventListener("click", function(){
+		alert("test");
+    	$.ajax({
+			type:"GET",
+			url: "/alarm/selectAlarm",
+			data: {"userId" : userId},
+			error:function(xhr, status, err){
+				alert(err);
+			}
+			success:function(data){
+				if(data == "Y"){
+					alert("성공");													
 					
-// 				}else{
-// 					alert("실패");
-// 				}
-// 			}
+				}else{
+					alert("실패");
+				}
+			}
 			
-// 		});
+		});
 
     	
-//     })
+    })
   </script>
   </body>
 </html>

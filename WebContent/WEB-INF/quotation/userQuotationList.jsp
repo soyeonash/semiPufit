@@ -119,7 +119,7 @@
 		</div>
 	</a>
 	</c:forEach>
-	<footer class="">
+	<footer class="fixed-bottom">
 		<div id="footer">
 			<table id="footer_table">
 				<tr>
