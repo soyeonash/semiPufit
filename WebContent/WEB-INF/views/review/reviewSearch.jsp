@@ -29,7 +29,6 @@
 			<td><%= rOne.getRegDate() %></td>
 		</tr>
 		<% } %>
-		
 		<tr>
 			<td colspan="3" align="center">
 				<form action="/review/search" method="get">

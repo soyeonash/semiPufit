@@ -29,8 +29,8 @@ public class Review {
 
 
 
-	public void setReplies(List<ReviewReply> replies) {
-		this.replies = replies;
+	public void setReplies(List<ReviewReply> list) {
+		this.replies = list;
 	}
 
 

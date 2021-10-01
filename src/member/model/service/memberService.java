@@ -1,6 +1,10 @@
 package member.model.service;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 import common.JDBCTemplate;
+import member.model.dao.memberDAO;
 import member.model.vo.member;
 
 public class memberService {
@@ -12,8 +16,17 @@ public class memberService {
 	}
 
 	public member printOneLogin(String userId, String userPwd) {
-
-		return null;
+		member member  = null;
+		Connection conn = null;
+		
+		try {
+			conn = jdbcTemplate.createConnection();
+			member = new memberDAO().selectOneLogin(conn, userId, userPwd);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return member;
 	}
 	
 	

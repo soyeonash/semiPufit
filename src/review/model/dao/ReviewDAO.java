@@ -10,6 +10,7 @@ import java.util.List;
 
 import common.JDBCTemplate;
 import review.model.vo.Review;
+import review.model.vo.ReviewReply;
 
 public class ReviewDAO {
 
@@ -175,7 +176,7 @@ public class ReviewDAO {
 	public int insertReview(Connection conn, Review review) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String query = "INSERT INTO REVIEW VALUES(SEQ_REVIEW.NEXTVAL,?,?,?,DEFAULT)";
+		String query = "INSERT INTO REVIEW VALUES(SEQ_REVIEW.NEXTVAL, ?, ?, 0, DEFAULT, ?, 0, 0)";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, review.getReviewSubject());
@@ -285,5 +286,83 @@ public class ReviewDAO {
 		return result;
 	}
 
+	public int insertReviewReply(Connection conn, int reviewNo, String replyContents, String writerId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "INSERT INTO REVIEW_REPLY VALUES(REPLY_SEQ.NEXTVAL, ?, ?, ?, DEFAULT, 0)";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, reviewNo);
+			pstmt.setString(2, replyContents);
+			pstmt.setString(3, writerId);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int updateReviewReply(Connection conn, int replyNo, String replyContents) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "UPDATE REVIEW_REPLY SET REVIEW_REPLY_CONTENTS = ? WHERE REVIEW_REPLY_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, replyContents);
+			pstmt.setInt(2, replyNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public int deleteReviewReplyOne(Connection conn, int replyNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "DELETE FROM REVIEW_REPLY WHERE REVIEW_REPLY_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, replyNo);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
+	public List<ReviewReply> selectAllReviewReply(Connection conn, int reviewNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<ReviewReply> rList = null;
+		String query = "SELECT * FROM REVIEW_REPLY WHERE REVIEW_NO = ?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, reviewNo);
+			rList =  new ArrayList<ReviewReply>();
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				ReviewReply reply = new ReviewReply();
+				reply.setReplyNo(rset.getInt("REVIEW_REPLY_NO"));
+				reply.setReviewNo(rset.getInt("REVIEW_NO"));
+				reply.setReplyContents(rset.getString("REVIEW_REPLY_CONTENTS"));
+				reply.setReplyWriterId(rset.getString("WRITER_ID"));
+				reply.setReplyDate(rset.getDate("REVIEW_REPLY_DATE"));
+				rList.add(reply);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(pstmt);
+			JDBCTemplate.close(rset);
+		}
+		return rList;
+	}
 	
 }

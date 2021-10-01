@@ -13,6 +13,32 @@
 <title>리뷰게시판 조회</title>
 </head>
 <body>
+	<!-- 베스트 리뷰 리스트 -->
+	<table border="1">
+		<tr>
+			<th>글번호</th>
+			<th>글제목</th>
+			<th>글쓴이</th>
+			<th>작성일</th>
+		</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<h1>리뷰게시판</h1>
 	<table border="1">
 		<tr>

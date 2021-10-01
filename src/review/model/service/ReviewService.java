@@ -8,6 +8,7 @@ import common.JDBCTemplate;
 import review.model.dao.ReviewDAO;
 import review.model.vo.PageData;
 import review.model.vo.Review;
+import review.model.vo.ReviewReply;
 
 public class ReviewService {
 	
@@ -39,10 +40,13 @@ public class ReviewService {
 	public Review printOneByNo(int reviewNo) {
 		Review reviewOne  = null;
 		Connection conn = null;
-		ReviewDAO rDao =  new ReviewDAO();
+		List<ReviewReply> list = null;
+		ReviewDAO rDao = new ReviewDAO();
 		try {
 			conn = jdbcTemplate.createConnection();
 			reviewOne  = rDao.selectOneByNo(conn, reviewNo);
+			list = rDao.selectAllReviewReply(conn, reviewNo);
+			reviewOne.setReplies(list);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -120,5 +124,56 @@ public class ReviewService {
 			JDBCTemplate.close(conn);
 		}
 		return pd;
+	}
+
+	public int registerReviewReply(int reviewNo, String replyContents, String writerId) {
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new ReviewDAO().insertReviewReply(conn, reviewNo, replyContents, writerId);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
+
+	public int modifyReplyOne(int replyNo, String replyContents) {
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new ReviewDAO().updateReviewReply(conn, replyNo, replyContents);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	public int removeReviewReply(int replyNo) {
+		Connection conn = null;
+		int result = 0;
+		try {
+			conn = jdbcTemplate.createConnection();
+			result  = new ReviewDAO().deleteReviewReplyOne(conn, replyNo);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
 	}
 }

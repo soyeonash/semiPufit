@@ -45,9 +45,9 @@ public class LoginServlet extends HttpServlet {
 		if(member != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("userId", member.getUserId());
-			response.sendRedirect("/member/loginSuccess.jsp"); // 성공할 경우 성공메시지 페이지로 이동
+			response.sendRedirect("/index.jsp"); //
 		}else {
-			response.sendRedirect("/member/studentError.html"); // 실패할 경우 실패메시지 페이지로 이동
+			System.out.println("로그인 실패");
 		}
 	
 	}
