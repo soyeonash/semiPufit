@@ -44,7 +44,7 @@ public class ReviewReplyWriterServlet extends HttpServlet {
 		String writerId = (String)session.getAttribute("userId");
 		int result = new ReviewService().registerReviewReply(reviewNo, replyContents, writerId);
 		if(result > 0) {
-			response.sendRedirect("/review/detail?reviewNo" + reviewNo);
+			response.sendRedirect("/review/detail?reviewNo=" + reviewNo);
 		}else{
 			System.out.println("댓글작성 실패");
 		}

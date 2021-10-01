@@ -135,7 +135,6 @@ public class ReviewDAO {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		
 		return reviewOne;
 	}
 

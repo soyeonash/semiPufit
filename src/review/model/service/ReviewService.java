@@ -151,10 +151,14 @@ public class ReviewService {
 		try {
 			conn = jdbcTemplate.createConnection();
 			result = new ReviewDAO().updateReviewReply(conn, replyNo, replyContents);
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 		return result;
 	}
 
