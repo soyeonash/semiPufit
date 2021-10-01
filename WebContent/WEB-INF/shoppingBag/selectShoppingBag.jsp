@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String userCheck = (String)request.getAttribute("userYN");
-	String quotationCheck = (String)request.getAttribute("quotationYN");
-%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -19,10 +15,20 @@
       crossorigin="anonymous"
     ></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./menu/menu.css" />
-    <script src="./menu/menu.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../menu/menu.css" />
+    <script src="../../menu/menu.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="./footer/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../../footer/footer.css" />
+    <style>
+      table{
+      width: 400px;
+      height: 200px;
+    }
+      #shop_img{
+      width: 200px;
+      heiht:400px;
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar fiexd-top">
@@ -38,9 +44,7 @@
 
       <ul class="navbar_icons">
         <li><i class="fas fa-user"></i></li>
-        <a href="/shoppingBag/selectShoppingBag">
         <li><i class="fas fa-weight-hanging"></i></li>
-        </a>
         <a href = "/alarm/selectAlarm"> 
         <li id="alarm_btn" id="alarm"><i class="fas fa-bell"></i></li>
          </a>
@@ -57,7 +61,31 @@
         <li><a href="#">리뷰게시판</a></li>
       </ul>
     </navside>
-    <a href="/shoppingBag/insertShoppingBag"><button>장바구니 담기</button></a>
+   <c:forEach items="${requestScope.sList}" var="sOne" varStatus="index">
+      <table border="1">
+    <tr>
+      <td rowspan="3" style="width: 200px;"><img src="${sOne.shoppingBagProductImageName}" alt="이미지없음" id="shop_img"></td>
+      <td colspan="3" style="height: 40px;">${sOne.shoppingBagProductName}</td>
+    </tr>
+    <tr>
+      <td colspan="3" style="height: 140px;">${sOne.shoppingBagProductContents}</td>
+    </tr>
+    <tr>
+      <td colspan="2">${sOne.shoppingBagProductPrice}</td>
+      <td></td>
+      <td><a href="/shoppingBag/deleteShoppingBag?shoppingBagCode=${sOne.shoppingBagCode}">
+      <button>삭제</button>
+      </a>
+      </td>      
+    </tr>
+  </table>
+    <br><br>
+    </c:forEach>
+	<div>
+		<button>결제하기</button>
+		<br><br>
+		<p>총 결제 금액:${requestScope.shoppingBagTotalPrice}</p>
+	</div>
   <footer class="fixed-bottom">
     <div id="footer">
       <table id="footer_table">
@@ -88,7 +116,7 @@
       </table>
       <img
         class="footer_img"
-        src="public/image/footer.png"
+        src="../../public/image/footer.png"
         alt=""
       />
     </div>

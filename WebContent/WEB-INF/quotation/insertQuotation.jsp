@@ -132,7 +132,7 @@
       	<img id="img" alt="이미지가 없습니다">
       </div>
       <br><br>
-      <textarea name="contents"></textarea><br><br><br><br>
+      <textarea name="contents" id="quotation-text"></textarea><br><br><br><br>
        <input type="submit" value="저장" id="save"><input type="reset" value="취소" id="cancel">
     </form>
   </div>
@@ -172,6 +172,22 @@
     </div>
   </footer>
   <script>
+  		var quotationText = document.querySelector("#quotation-text").val();
+  		var quotationSubject = document.querySelector("#subject").val()
+  		var quotationTextRegEx = /^ab$/
+  		var quotaionSubjectRegEx = /^ab$/
+  		 document.querySelector("#save").addEventListener("click", function(){
+  		 if(!quotationTextRegEx.test(quotationText)) {
+  			 alert("내용을 입력해주세요")
+  			 return false;
+  		 }else if(!quotationSubjectRegEx.test(quotationSubject)){
+  			 alert("제목을 입력해주세요 ")
+  			 return false;
+  		 }else{
+  			 return true
+  		 }  		 
+  	    });
+  
   		function setThumbnail(event){
   			var reader = new FileReader();
   			
