@@ -1,0 +1,156 @@
+li{
+    list-style-type: none;
+}
+li a{
+    color: black;
+    text-decoration: none;
+}
+
+.product-page{
+    width: 1500px;
+    height: 1200px;
+    margin: 0 auto;
+    /*float: left;*/
+}
+    .product{
+        text-align: center;
+        margin: 0;
+    }
+        .product-ad{
+            position: relative;
+            height: 350px;
+            width: 100%;
+            text-align: center;
+            vertical-align: middle;
+        }
+            #product-ad-img{
+                position: relative;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 100%;
+                z-index: 2;
+            }
+            .product-ad h1{
+                position: absolute;
+                padding: 5px 10px;
+                text-align: center;
+                top: 35%;
+                left: 45%;
+                z-index: 3;
+                font-size: 50px;
+                color: white;
+            }
+        .category{
+            width: 200px;
+            height: 100%;
+            float: left;
+            background-color: coral;
+        }
+            .list-font{
+                font-size: 30px;
+            }
+            .category ul li a{
+                font-size: 20px;
+            }
+
+        .list{
+            height: 100%;
+            width: 1150px;
+            float: left;
+        }
+            .list-bar{
+                text-align: center;
+                height: 120px;
+                width: 100%;
+                float: left;
+                position: relative;
+            }
+                /* .select-layer{
+                    width: 50%;
+                    height: 100%;
+                    float: left;
+                }
+                    .select-sort{
+                        border: 2px solid rgb(197, 226, 221);
+                        width: 100px;
+                        position: relative;
+                        float: right;
+                        overflow: hidden;
+                    }
+                    #TopSort{
+                        top: 50px;
+                    }
+                    #divTopSortLayer{
+                        display: none;
+                        float: right;
+                        top: 80px;
+                        left: 104px;
+                        text-align: center;
+                        height: 100px;
+                    }
+                        .select-sort li a{
+                            display: block;
+                            width: 120px;
+                            height: 45px;
+                            position: relative;
+                            right: 60px;
+                            background-color: lavender;
+                            bottom: 13px;
+                            border: 1px solid black;
+                        }
+                        .select-sort li a, .select-sort span{
+                            font-size: 20px;
+                        } */
+
+            .container{
+                float: left;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-template-rows: repeat(3, 1fr);
+                column-gap: 30px;
+                row-gap: 30px;
+                background-color: cadetblue;
+                margin: 30px;
+            }
+                .container-item:hover{
+                    filter: brightness(50%);
+                    cursor: pointer;
+                }
+                .container-item{
+                    background-color: chartreuse;
+                    margin: 10px;
+                }
+            
+        
+                    /*.select-layer ul{
+                        overflow-x: hidden;
+                        overflow-y: scroll;
+                        width: 200px;
+                        height: 130px;
+                        display: block;
+                    }*/
+
+
+
+        #bag{
+            background-color: teal;
+            height: 100%;
+            width: 150px;
+            float: left;
+            display: none;
+        }
+            .sideBanner{
+                position: absolute;
+                width: 130px;
+                height: 300px;
+                top: 300px;
+                background-color: rgb(216, 216, 195);
+                z-index: 1;
+            }
+                .product-Img{
+                    width: 100px;
+                    height: 100px;
+                    background-color: lightgrey;
+                    text-align: center;
+                }

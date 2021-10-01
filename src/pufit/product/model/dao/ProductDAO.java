@@ -14,17 +14,15 @@ import pufit.product.model.vo.Product;
 public class ProductDAO {
 	public ProductDAO() {}
 
-	public List<Product> productAllList(Connection conn) {
-		/* PreparedStatement pstmt = null; */
-		Statement stmt = null;
+	public List<Product> productAllList(Connection conn, String item) {
+		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<Product> pList = null;
-		String query = "SELECT * FROM PRODUCT";
+		String query = "SELECT * FROM PRODUCT WHERE ROW_KIND=? ORDER BY PRODUCT_DATE DESC";
 		try {
-			/*pstmt = conn.prepareStatement(query);
-			rset = pstmt.executeQuery();*/
-			stmt = conn.createStatement();
-			rset = stmt.executeQuery(query);
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, item);
+			rset = pstmt.executeQuery();
 			
 			pList = new ArrayList<Product>();
 			while(rset.next()) {
@@ -42,12 +40,49 @@ public class ProductDAO {
 				product.setProductImgName(rset.getString("PRODUCT_IMG_NAME"));
 				pList.add(product);
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
-			/* JDBCTemplate.close(pstmt); */
-			JDBCTemplate.close(stmt);
+		}
+		return pList;
+	}
+
+	public List<Product> productSortSaleList(Connection conn, String item) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Product> pList = null;
+		System.out.println("아잍[ㅁ : "+item);
+		System.out.println("실행안되요..?(DAO)");
+		String query = "SELECT * FROM PRODUCT WHERE ROW_KIND=? ORDER BY SALE_COUNT DESC";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, item);
+			rset = pstmt.executeQuery();
+			
+			pList = new ArrayList<Product>();
+			while(rset.next()) {
+				Product product = new Product();
+				product.setProductCode(rset.getString("PRODUCT_CODE"));
+				product.setProductName(rset.getString("PRODUCT_NAME"));
+				product.setProductImage(rset.getString("PRODUCT_IMAGE"));
+				product.setRegistrationDate(rset.getDate("PRODUCT_DATE"));
+				product.setProductPrice(rset.getString("PRODUCT_PRICE"));
+				product.setProductSize(rset.getString("PRODUCT_SIZE"));
+				product.setSaleCount(rset.getInt("SALE_COUNT"));
+				product.setHighKind(rset.getString("HIGH_KIND"));
+				product.setRowKind(rset.getString("ROW_KIND"));
+				product.setProductContents(rset.getString("PRODUCT_CONTENTS"));
+				product.setProductImgName(rset.getString("PRODUCT_IMG_NAME"));
+				pList.add(product);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
 			JDBCTemplate.close(rset);
 		}
 		return pList;
@@ -199,6 +234,40 @@ public class ProductDAO {
 		}
 		
 		return result;
+	}
+
+	public List<Product> productSearch(Connection conn, String searchKeyword) {
+		PreparedStatement pstmt= null;
+		ResultSet rset = null;
+		List<Product> pList = null;
+		String query = "SELECT * FROM PRODUCT WHERE PRODUCT_NAME=?";
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, "%"+searchKeyword+"%");
+			pList = new ArrayList<Product>();
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Product product = new Product();
+				product.setProductCode(rset.getString("PRODUCT_CODE"));
+				product.setProductName(rset.getString("PRODUCT_NAME"));
+				product.setProductImage(rset.getString("PRODUCT_IMAGE"));
+				product.setRegistrationDate(rset.getDate("PRODUCT_DATE"));
+				product.setProductPrice(rset.getString("PRODUCT_PRICE"));
+				product.setProductSize(rset.getString("PRODUCT_SIZE"));
+				product.setSaleCount(rset.getInt("SALE_COUNT"));
+				product.setHighKind(rset.getString("HIGH_KIND"));
+				product.setRowKind(rset.getString("ROW_KIND"));
+				product.setProductContents(rset.getString("PRODUCT_CONTENTS"));
+				product.setProductImgName(rset.getString("PRODUCT_IMG_NAME"));
+				pList.add(product);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return null;
 	}
 
 }

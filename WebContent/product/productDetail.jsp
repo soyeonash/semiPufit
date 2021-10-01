@@ -43,6 +43,7 @@
 	<table>
 		<tr><th>별점</th><th>설명</th><th>작성자</th><th></th></tr>
 		<c:forEach items="${requestScope.productOne.replies}" var="reply" varStatus="index">
+			<p></p>${replies.productCode } 
 			<tr>
 				<td>${reply.productReplyScore }</td>
 				<td>${reply.productReplyContents }</td>
@@ -70,7 +71,7 @@
 	</form>
 	
 	<script type="text/javascript">
-/* 	function modifyReply(obj, productReplyNo, productCode){
+ 	function modifyReply(obj, productReplyNo, productCode){
 		var contents = $(obj).parent().prev().find("input").val();
 //		var contents = $("#modifyReply").val();
 		$("#modifyReplyContents").val(productReplyContents);
@@ -85,7 +86,7 @@
 	function hideModifyReply(obj){
 		$(obj).parents("tr").prev().show();
 		$(obj).parents("tr").hide();
-	} */
+	} 
 	</script>
 </body>
 </html>

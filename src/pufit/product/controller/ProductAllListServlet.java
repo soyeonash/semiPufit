@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import pufit.product.model.service.ProductService;
 import pufit.product.model.vo.Product;
@@ -31,11 +32,25 @@ public class ProductAllListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Product> pList = new ProductService().productAllList();
-		
+		//HttpSession session = request.getSession();
+		//String userId=(String)session.getAttribute("userId");
+		String item = request.getParameter("item");
+		System.out.println("item : "+item);
+		String selectOne = request.getParameter("selectOne");
+		System.out.println("selectOne : "+ selectOne);
+		//shop처음 이동했을시
+		if(item==null&&selectOne==null) {
+			item="민소매";
+			selectOne="최신순";
+		}
+		List<Product> pList = new ProductService().productAllList(item, selectOne);
+
 		if(!pList.isEmpty()) {
 			request.setAttribute("pList", pList);
+			request.setAttribute("category", item); //ajax처리 위해서.
+			request.setAttribute("select", selectOne); //ajax처리 위해서.
 			request.getRequestDispatcher("/product/productAllList.jsp").forward(request, response);
+			//System.out.println("성공??");
 		} else {
 			request.setAttribute("pList", pList);
 			request.getRequestDispatcher("/product/productAllList.jsp").forward(request, response);

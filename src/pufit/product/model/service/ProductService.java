@@ -15,12 +15,17 @@ public class ProductService {
 		jdbcTemplate = JDBCTemplate.getConnection();
 	}
 	
-	public List<Product> productAllList() {
+	public List<Product> productAllList(String item, String selectOne) {
 		Connection conn = null;
 		List<Product> pList = null;
 		try {
 			conn = jdbcTemplate.createConnection();
-			pList = new ProductDAO().productAllList(conn);
+			if(selectOne.equals("인기순")) {
+				pList = new ProductDAO().productSortSaleList(conn, item);
+				System.out.println("실행안되요ㅜㅠㅠㅠㅠ..?(인기순)");
+			}else {				
+				pList = new ProductDAO().productAllList(conn, item);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -150,6 +155,21 @@ public class ProductService {
 			JDBCTemplate.close(conn);
 		}
 		return result;
+	}
+
+	public List<Product> productSearch(String searchKeyword) {
+		Connection conn = null;
+		List<Product> pList = null;
+		//String searchPageNavi =null;
+		try {
+			conn = jdbcTemplate.createConnection();
+			pList = new ProductDAO().productSearch(conn, searchKeyword);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return pList;
 	}
 
 }

@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../menu/menu.css" />
     <script src="./menu/menu.js"></script>
     <link rel="stylesheet" type="text/css" href="../footer/footer.css" />
-    <link rel="stylesheet" type="text/css" href="./productIndex.css" />
+    <link rel="stylesheet" type="text/css" href="./productAllList.css" />
   </head>
   <body>
     <nav class="navbar">
@@ -58,6 +58,10 @@
                 src="./test.png" alt="">
                 <h1>SHOP</h1>
             </div>
+            <form action="/product/search" method="get">
+	            <input type="search" id="searchProduct">
+	            <input type="submit" value="검색">
+            </form>
 
             <div class = "product category">
                 <article style="margin: 10px;">
@@ -65,33 +69,33 @@
                     <section>
                         <p class="list-font">의류</p>
                         <ul>
-                            <li><a href="#">민소매</a></li><br>
-                            <li><a href="#">셔츠</a></li><br>
-                            <li><a href="#">후드티</a></li><br>
-                            <li><a href="#">맨투맨</a></li><br>
-                            <li><a href="#">잠옷</a></li><br>
-                            <li><a href="#">원피스</a></li><br>
+                            <li><a href="javascript:void(0);" onclick="callListFunction('민소매');">민소매</a></li><br>
+                            <li><a href="javascript:void(0);" onclick="callListFunction('셔츠');">셔츠</a></li><br>
+                            <li><a href="javascript:void(0);" onclick="callListFunction('후드티');">후드티</a></li><br>
+                            <li><a href="javascript:void(0);" onclick="callListFunction('맨투맨');">맨투맨</a></li><br>
+                            <li><a href="javascript:void(0);" onclick="callListFunction('잠옷');">잠옷</a></li><br>
+                            <li><a href="javascript:void(0);" onclick="callListFunction('원피스');">원피스</a></li><br>
                         </ul>
                     </section>
                     <section>
                         <p class="list-font">용품</p>
                         <ul>
-                            <li><a href="#">목줄</a></li><br>
-                            <li><a href="#">밥그릇</a></li><br>
-                            <li><a href="#">하우스</a></li><br>
+                            <li><a href="javascript:void(0);" onclick="callListFunction('목줄');">목줄</a></li><br>
+                            <li><a href="javascript:void(0);" onclick="callListFunction('밥그릇');">밥그릇</a></li><br>
+                            <li><a href="javascript:void(0);" onclick="callListFunction('하우스');">하우스</a></li><br>
                         </ul>
                     </section>
                 </article>
             </div>
 
-            <div class = "product list" style="background-color: antiquewhite;">
+            <div id="list" class = "product list" style="background-color: antiquewhite;">
               
                 <div class="list-bar">
                     <div class="select-layer">
                         <p style="position: relative; right:210px; top: 10px; font-size: 30px;">목록</p>              
                     </div>
                     <div class="select-layer">
-                        <div class="select-sort" id="TopSort">
+                       <!--  <div class="select-sort" id="TopSort">
                             <a href="#" style="text-decoration: none; color: black;">
                                 <span>최신순</span>&nbsp;&nbsp;
                                 <button id="select-button" style="border: 0; outline: 0; background-color: transparent;
@@ -107,9 +111,13 @@
                                     <a href="#">최신순</a>
                                 </li>
                             </ul>
-                        </div>
-                        <button id="onDisplay">click</button>
+                        </div> -->
+                        <select style="width: 100px; height: 30px; font-size: 20px;" name="productOption">
+                        	<option value="최신순">최신순</option>
+                        	<option value="인기순">인기순</option>
+                        </select>
                     </div>
+                    <button id="onDisplay">click</button>
                 </div>
                 <hr>
                 
@@ -127,19 +135,19 @@
 		                    </div>
 	                </c:forEach>
                   </div>
-                  <div class="product-page" style="float: left; background-color: thistle; height: 50px; width: 100%;">
+                <div class="product-page" style="float: left; background-color: thistle; height: 50px; width: 100%;">
                     <!-- 페이징 코드 자리 -->
-                    
-                  </div>
-
-              </div>
-              <div class = "product" id="bag">
+                </div>
+                
+            </div>
+            <div class = "product" id="bag">
                   <div class="sideBanner">
                       <button id ="insertProduct">insert</button>
                       <span class="product-Img">adfaf</span>
                   </div>
-              </div>
-              
+            </div>
+           	<input type="hidden" id="category" value="${category }">
+           	<input type="hidden" id="select" value="${select }">
         </div>
     </main>
   </body>
@@ -193,10 +201,10 @@
             var currentTop =$(window).scrollTop();
             var bannerTop = currentTop+floatPosition+"px";
 
-            //이동 애니메이션
-            $(".sideBanner").stop().animate({
+        //이동 애니메이션
+        $(".sideBanner").stop().animate({
                 "top":bannerTop
-            }, 300);
+                }, 300);
         }).scroll();
 
         var i = 1;
@@ -205,9 +213,38 @@
             i++
         });
 
-        $(".select-sort").click(function(){
+/*         $(".select-sort").click(function(){
             $("#divTopSortLayer").toggle();
-        });
+        }); */
+        
+        
+      $("select[name=productOption]").change(function() {
+			//var selectOne=$("select[name=productOption] option:selected").text();
+			var item = $("#category").val();
+			var selectOne = $(this).val();
+			//ajax는 url 안 바뀜
+			$.ajax({
+				async:false,
+				cache:false,
+				type:'get',
+				url:'/product/allList?item='+item+'&selectOne='+selectOne,
+				data:{selectOne:selectOne},
+				success:function(data){
+				},
+				error:function(){
+					alert("정렬 오류!");
+				}
+			});
+		});  
     });
+    
+
+    function callListFunction(f) {
+    	var item = f;
+		var selectOne = $("#select").val();
+		location.href="/product/allList?item="+item+"&selectOne=최신순";
+    }
+
+
   </script>
 </html>
