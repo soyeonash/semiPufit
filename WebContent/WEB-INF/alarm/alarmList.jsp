@@ -23,6 +23,11 @@
 			<td><a href="/alarm/deleteAlarm?alarmNo=${aOne.alarmNo}"><button>삭제</button></a></td>
 		</tr>		
 		</c:forEach>
+		<tr>
+		<td colspan="4" align="center">
+			${requestScope.alarmPageNavi}
+		</td>
+		</tr>
 	</table>
 </body>
 </html>

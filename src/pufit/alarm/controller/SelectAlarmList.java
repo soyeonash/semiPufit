@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import pufit.alarm.model.service.AlarmService;
 import pufit.alarm.model.vo.Alarm;
+import pufit.alarm.model.vo.AlarmPageData;
 
 /**
  * Servlet implementation class SelectAlarmList
@@ -34,11 +35,20 @@ public class SelectAlarmList extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//HttpSession session = request.getSession();
 		//String userId = session.getAttribute("userId"); 나중에 세션아디로 할 코드
+		int currentPage = 0;
+		String getCurrentPage = request.getParameter("currentPage");
+		if(getCurrentPage==null) {
+			currentPage = 1;
+		}else {
+			currentPage = Integer.parseInt(getCurrentPage);
+		}
 		String userId = "khuser";
-		List<Alarm> aList = new AlarmService().selectAlarmList(userId);
+		AlarmPageData pageData = new AlarmService().selectAlarmList(userId, currentPage);
+		List<Alarm> aList = pageData.getAlarmList();
 		if(!aList.isEmpty()) {
+			request.setAttribute("alarmPageNavi", pageData.getAlarmPageNavi());
 			request.setAttribute("aList", aList);
-			request.getRequestDispatcher("/WEB-INF/quotation/alarmList.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/alarm/alarmList.jsp").forward(request, response);
 		}else {
 			System.out.println("실패했는데요?");
 		}
