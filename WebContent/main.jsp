@@ -41,12 +41,13 @@
         <a href="/shoppingBag/selectShoppingBag">
         <li><i class="fas fa-weight-hanging"></i></li>
         </a>
-        <a href = "/alarm/selectAlarm"> 
-        <li id="alarm_btn" id="alarm"><i class="fas fa-bell"></i></li>
-         </a>
+<!--         <a href = "/alarm/selectAlarm">  -->
+        <li id="alarm_btn" onclick="alarm_btn_click"><i class="fas fa-bell"></i></li>
+<!--          </a> -->
         <li id="navbar_toogleBtn"><i class="fas fa-bars"></i></li>
       </ul>
     </nav>
+         <div id="Alarm_Area"></div>
 
     <navside class="navbar_side">
       <ul class="navbar_menu_side">
@@ -92,30 +93,56 @@
         alt=""
       />
     </div>
+    <div id="Alarm_Area"></div>
   </footer>
     <script>
-//     document.querySelector("#alarm").addEventListener("click", function(){
-// 		alert("test");
-//     	$.ajax({
-// 			type:"GET",
-// 			url: "/alarm/selectAlarm",
-// 			data: {"userId" : userId},
-// 			error:function(xhr, status, err){
-// 				alert(err);
-// 			}
-// 			success:function(data){
-// 				if(data == "Y"){
-// 					alert("성공");													
-					
-// 				}else{
-// 					alert("실패");
-// 				}
-// 			}
-			
-// 		});
+//    $(document).ready(function(){    	
+//         $.ajax({
+//             type : "GET", //전송방식을 지정한다 (POST,GET)
+//             url : "/alarm/selectAlarm?currentPage=1",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+//             dataType : "html",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+//             error : function(){
+//                 alert("통신실패!!!!");
+//             },
+//             success : function(Parse_data){
+//                 $("#Alarm_Area").html(Parse_data); //div에 받아온 값을 넣는다.
+//                 //alert("통신 데이터 값 : " + Parse_data);
+//             }
+             
+//         });
+//     });
 
-    	
-//     })
+   var alarm = document.querySelector("#alarm_btn");
+   function alarm_btn_click(){
+	   $.ajax({
+           type : "GET", //전송방식을 지정한다 (POST,GET)
+           url : "/alarm/selectAlarm?currentPage=1",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+           dataType : "html",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+           error : function(){
+               alert("통신실패!!!!");
+           },
+           success : function(Parse_data){
+               $("#Alarm_Area").html(Parse_data); //div에 받아온 값을 넣는다.
+               //alert("통신 데이터 값 : " + Parse_data);
+           }
+            
+       });
+   }
+//    $(alarm).addEventListener('click', function(){    	
+//         $.ajax({
+//             type : "GET", //전송방식을 지정한다 (POST,GET)
+//             url : "/alarm/selectAlarm?currentPage=1",//호출 URL을 설정한다. GET방식일경우 뒤에 파라티터를 붙여서 사용해도된다.
+//             dataType : "html",//호출한 페이지의 형식이다. xml,json,html,text등의 여러 방식을 사용할 수 있다.
+//             error : function(){
+//                 alert("통신실패!!!!");
+//             },
+//             success : function(Parse_data){
+//                 $("#Alarm_Area").html(Parse_data); //div에 받아온 값을 넣는다.
+//                 //alert("통신 데이터 값 : " + Parse_data);
+//             }
+             
+//         });
+//     });
   </script>
   </body>
 </html>
