@@ -5,8 +5,6 @@
 <%-- <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> --%>
 <%
 	List<Qna> qList = (List<Qna>) request.getAttribute("qList");
-	String pageNavi = (String)request.getAttribute("pageNavi");
-
 %>
 <!DOCTYPE html>
 <html>
@@ -24,36 +22,6 @@
 	crossorigin="anonymous"></script>
 </head>
 <style>
-	.paging{
-		margin: 20px auto;
-		text-align: center;
-	}
-	.paging a{
-		display: inline-block;
-        width: 30px;
-        height: 30px;
-	    text-decoration: none;
-		color: #000;
-	}
-	.paging a:first-child:hover{
-	    text-decoration: none;
-	}
-	.paging a:last-child:hover{
-	    text-decoration: none;
-	}
-	.paging a:hover{
-	    text-decoration: underline;
-	}
-	.paging span{
-		padding-top: 4px;
-		display: inline-block;
-        width: 30px;
-        height: 30px;
-		cursor: default;
-		color: rgb(0, 0, 0);
-		border: 3px solid rgb(88, 170, 187) ;
-		border-radius: 50%;
-	}
 #qnaListMain {
 	padding: 20px;
 }
@@ -64,41 +32,18 @@
 	max-width: 700px;
 	margin: 0px auto;
 }
-
-.qnsBtnDiv {
+.qnsBtnDiv{
 	margin: 30px auto 0px auto;
 	max-width: 700px;
 	width: 100%;
 	display: flex;
 }
 
-.qnsBtnDiv>button:first-child {
-	margin-left: auto;
+.qnsBtnDiv > button:first-child{
+margin-left:auto;
 }
-
-.qnsBtnDiv>button {
-	margin: 15px 10px;
-    padding: 5px 10px;
-    border: 1px solid #999;
-    border-radius: 10px;
-    background-color: #8c8c8c;
-    color: #fff;
-    /* text-shadow: 0px 0 rgb(224 216 216), 0 1px rgb(15 15 15), 2px 0 rgb(54 53 53), 0 -1px rgb(0 0 0);
-	transition:transform 0.3s ; */
-}
-
-.qnsBtnDiv>button:hover {
-	animation: kkkkk ease-in-out 0.5s infinite alternate;
-    background-color: #669692;
-}
-
-@keyframes kkkkk {
-  0% {
-    padding-bottom: -1px;
-  }
-  100% {
-    padding-bottom: 1px;
-  }
+.qnsBtnDiv > button{
+margin:10px;
 }
 
 .qnaListTable tr td {
@@ -179,8 +124,9 @@
 				</h2>
 				<div id="collapseThree" class="accordion-collapse collapse"
 					aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-					<div class="accordion-body">모든 제품은 고객 주문에 따라 개별 제작되는 주문 제작
-						상품으로 선결제 완료 후 제작이 진행됩니다.</div>
+					<div class="accordion-body">
+					모든 제품은 고객 주문에 따라 개별 제작되는 주문 제작 상품으로 선결제 완료 후 제작이 진행됩니다.
+					</div>
 				</div>
 			</div>
 			<div class="accordion-item">
@@ -192,38 +138,40 @@
 				</h2>
 				<div id="collapseFour" class="accordion-collapse collapse"
 					aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-					<div class="accordion-body">로그인 후 [마이페이지] → [구매내역] 메뉴를 통해 주문
-						상태 확인 및 배송 추적이 가능합니다.</div>
+					<div class="accordion-body">
+					로그인 후 [마이페이지] → [구매내역] 메뉴를 통해 주문 상태 확인 및 배송 추적이 가능합니다.
+					</div>
 				</div>
 			</div>
 			<div class="accordion-item">
 				<h2 class="accordion-header" id="headingFive">
 					<button class="accordion-button collapsed" type="button"
 						data-bs-toggle="collapse" data-bs-target="#collapseFive"
-						aria-expanded="false" aria-controls="collapseFive">Q.
-						[기타]회원 탈퇴는 어떻게 하나요?</button>
+						aria-expanded="false" aria-controls="collapseFive">
+						Q. [기타]회원 탈퇴는 어떻게 하나요?</button>
 				</h2>
 				<div id="collapseFive" class="accordion-collapse collapse"
 					aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-					<div class="accordion-body">마이페이지의 [회원 탈퇴] 메뉴를 이용하시면 회원 탈퇴가
-						가능합니다. 회원 탈퇴 시 주문 이력, 업로드한 이미지, 장바구니 정보가 삭제되며 복구가 불가하므로 신중하게 진행하실
-						것을 부탁드립니다.</div>
+					<div class="accordion-body">
+						마이페이지의 [회원 탈퇴] 메뉴를 이용하시면 회원 탈퇴가 가능합니다.
+						회원 탈퇴 시 주문 이력, 업로드한 이미지, 장바구니 정보가 삭제되며 복구가 불가하므로 신중하게 진행하실 것을 부탁드립니다.
+
+					</div>
 				</div>
 			</div>
 		</div>
 
-		<div class="qnsBtnDiv">
-
-			<button class="qnaInsertBtn" onclick="myqnaFunc()">내 글 보기</button>
-
-			<button class="qnaInsertBtn" onclick="qnaInsertFunc()">글
-				작성하기</button>
-
-		</div>
-
-
+	<div class="qnsBtnDiv">
+	
+		<button class="qnaInsertBtn" onclick="qnaFunc()">전체 글 보기</button>
+	
+	<button class="qnaInsertBtn" onclick="qnaInsertFunc()">글 작성하기</button>
+	
+	</div>
+	
 
 
+	
 		<table class="qnaListTable">
 			<thead>
 				<tr>
@@ -248,9 +196,9 @@
 			</tbody>
 		</table>
 
-	<div class="paging"><%= pageNavi %></div>
-	
 
+
+	
 
 	</main>
 
@@ -281,14 +229,12 @@ function selectQna(no){
             alert("통신 실패.")
         }
     });
-	
-	
 }
 function qnaInsertFunc(){
 	location.href="/qna/insert"
 }
-function myqnaFunc(){
-	location.href="/qna/myQna"
+function qnaFunc(){
+	location.href="/qna/list"
 }
 
 </script>

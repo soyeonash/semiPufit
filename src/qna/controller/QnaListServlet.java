@@ -32,19 +32,19 @@ public class QnaListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		int currentPage = 0;
-//		String getCurrentPage = request.getParameter("currentPage");
-//		if(getCurrentPage == null) {
-//			currentPage = 1;
-//		}else {
-//			currentPage = Integer.parseInt(getCurrentPage);
-//		}
+		int currentPage = 0;
+		String getCurrentPage = request.getParameter("currentPage");
+		if(getCurrentPage == null) {
+			currentPage = 1;
+		}else {
+			currentPage = Integer.parseInt(getCurrentPage);
+		}
 //		PageData pageData = new NoticeService().printAllNotice(currentPage);
-		QnaPageData qnaPageData = new QnaService().printAllQna();
+		QnaPageData qnaPageData = new QnaService().printAllQna(currentPage);
 		List<Qna> qList = qnaPageData.getQnaList();
 //		if(!nList.isEmpty()) {
 			request.setAttribute("qList", qList);
-//			request.setAttribute("pageNavi", pageData.getPageNavi());
+			request.setAttribute("pageNavi", qnaPageData.getPageNavi());
 			request.getRequestDispatcher("/WEB-INF/views/qna/qnaList.jsp").forward(request, response);
 			System.out.println("qnalist들어옴");
 //		}else {

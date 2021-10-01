@@ -1,5 +1,7 @@
 package qna.model.vo;
 
+import java.util.List;
+
 public class Qna {
 	private int qnaNo;
 	private String qnaTitle;
@@ -8,12 +10,23 @@ public class Qna {
 	private String qnaImage;
 	private String userId;
 	private String qnaPwd;
+	//댓글
+	private List<QnaReply> replies;
 	
+
 	public Qna() {}
 	
-	
+	public List<QnaReply> getReplies() {
+		return replies;
+	}
+
+	public void setReplies(List<QnaReply> replies) {
+		this.replies = replies;
+	}
+
+
 	public Qna(int qnaNo, String qnaTitle, String qnaComments, String category, String qnaImage, String userId,
-			String qnaPwd) {
+			String qnaPwd,List<QnaReply> replies) {
 		super();
 		this.qnaNo = qnaNo;
 		this.qnaTitle = qnaTitle;
@@ -22,6 +35,7 @@ public class Qna {
 		this.qnaImage = qnaImage;
 		this.userId = userId;
 		this.qnaPwd = qnaPwd;
+		this.replies = replies;
 	}
 
 

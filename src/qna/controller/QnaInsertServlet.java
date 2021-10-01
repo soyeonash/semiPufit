@@ -58,8 +58,17 @@ public class QnaInsertServlet extends HttpServlet {
 
 		// 2. upload 폴더에 저장한 파일에 대한 정보를 DB에 저장하는 작업
 		File uploadFile = multi.getFile("upFile");
-		String filePath = uploadFile.getPath();
-		String fileName = multi.getFilesystemName("upFile");
+
+		System.out.println("null??? ::: " + uploadFile);
+		String filePath = "";
+		String fileName = "";
+		if (uploadFile != null) {
+			filePath = uploadFile.getPath();
+			fileName = "/upload/" + multi.getFilesystemName("upFile");
+		} else {
+			filePath = null;
+			fileName = null;
+		}
 
 		HttpSession session = request.getSession();
 		String title = multi.getParameter("qna-title");
@@ -76,17 +85,17 @@ public class QnaInsertServlet extends HttpServlet {
 		qna.setQnaPwd(pwd);
 		qna.setQnaComments(comments);
 		qna.setCategory(category);
-		qna.setQnaImage("/upload/"+fileName);
+		qna.setQnaImage(fileName);
 		qna.setUserId(writerId);
 		// Service에 넘겨서
 		int result = new QnaService().insertQna(qna);
 		// 결과 여부에 따라서 페이지 이동
-		if(result > 0 ) {
+		if (result > 0) {
 //			// 작성성공 후에 noticeList.jsp를 보고 싶음
 //			// 그렇다고 noticeList.jsp로 이동하는 것이 아니라
 //			// 이미 noticeList.jsp를 보여주도록 하는 서블릿을 요청해서 볼 수 있도록 함
-		response.sendRedirect("/qna/list");
-		}else {
+			response.sendRedirect("/qna/list");
+		} else {
 			request.setAttribute("errorMsg", "게시글 등록 에러입니다. 다시 해주세요.");
 			request.getRequestDispatcher("/WEB-INF/views/error/error.jsp").forward(request, response);
 		}

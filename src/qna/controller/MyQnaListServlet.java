@@ -8,22 +8,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import qna.model.service.QnaService;
 import qna.model.vo.Qna;
 import qna.model.vo.QnaPageData;
 
 /**
- * Servlet implementation class QnaListServlet
+ * Servlet implementation class SelectMyQnaListServlet
  */
-@WebServlet("/qna/detail")
-public class QnaDetailServlet extends HttpServlet {
+@WebServlet("/qna/myQna")
+public class MyQnaListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaDetailServlet() {
+    public MyQnaListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,22 +33,19 @@ public class QnaDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
-		Qna qnaOne = new QnaService().printOneByNo(qnaNo);
+		// TODO Auto-generated method stub
+		HttpSession session = request.getSession(); // 로그인 한사람만 댓글 달 수 있게
+		String userId = (String) session.getAttribute("userId"); // 로그인 서블릿에서 userId로 저장을 했기때문에
+		
+		QnaPageData qnaPageData = new QnaService().printMyQna(userId);
 	
-		if (qnaOne != null) {
-			// 성공하면 디테일
-			request.setAttribute("qnaOne", qnaOne);
-			request.getRequestDispatcher("/WEB-INF/views/qna/qnaDetail.jsp").forward(request, response);
-		}else {
-//			// 실패하면 에러페이지
-//			request.getRequestDispatcher("WEB-INF/views/qna/qnaError.html").forward(request, response);
-			request.setAttribute("errorMsg", "게시글을 불러오다가 에러가 났습니다... 다시 해주세요.");
-			request.getRequestDispatcher("/WEB-INF/views/error/error.jsp").forward(request, response);
-		
-		}
-		
-	}
+		List<Qna> qList = qnaPageData.getQnaList();
+//		if(!nList.isEmpty()) {
+		qList.toString();
+			request.setAttribute("qList", qList);
+//			request.setAttribute("pageNavi", pageData.getPageNavi());
+			request.getRequestDispatcher("/WEB-INF/views/qna/myQnaList.jsp").forward(request, response);
+			System.out.println("myqna들어옴");	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

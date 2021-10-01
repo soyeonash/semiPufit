@@ -4,7 +4,7 @@ $(document).ready(function () {
   });
 
   $(document).on("click", ".navbar_logo", function () {
-    location.reload();
+    location.href="/";
   });
   
   

@@ -4,6 +4,7 @@ import java.util.List;
 
 public class QnaPageData {
 	private List<Qna> qnaList;
+	private String pageNavi;
 
 	public QnaPageData() {}
 	
@@ -14,7 +15,13 @@ public class QnaPageData {
 	public void setQnaList(List<Qna> qnaList) {
 		this.qnaList = qnaList;
 	}
+	public String getPageNavi() {
+		return pageNavi;
+	}
 
+	public void setPageNavi(String pageNavi) {
+		this.pageNavi = pageNavi;
+	}
 	@Override
 	public String toString() {
 		return "PageData [qnaList=" + qnaList + "]";
