@@ -52,5 +52,19 @@ public class ShoppingBagService {
 		}
 		return sbpd;
 	}
+	public int deleteShoppingBag(int shoppingBagCode) {
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = jdbcTemplate.createConnection();
+			result = new ShoppingBagDAO().deleteShoppingBag(conn, shoppingBagCode);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return result;
+	}
 	
 }

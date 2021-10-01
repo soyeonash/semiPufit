@@ -87,4 +87,21 @@ public class ShoppingBagDAO {
 		return shoppingBagTotalPrice;
 	}
 
+	public int deleteShoppingBag(Connection conn, int shoppingBagCode) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query  ="DELETE FROM SHOPPINGBAG WHERE SHOPPING_CODE = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, shoppingBagCode);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return result;
+	}
+
 }

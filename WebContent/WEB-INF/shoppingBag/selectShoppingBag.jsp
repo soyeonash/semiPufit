@@ -23,11 +23,47 @@
       table{
       width: 400px;
       height: 200px;
+      margin: 0px;
+      position: relative;
+
     }
       #shop_img{
-      width: 200px;
-      heiht:400px;
+      width: auto;
+      heiht: auto;
       }
+      #shoppingBag_list{
+      	text-align: center;
+      	float: left;
+      	position: relative;
+      	left:500px;
+      }
+      #shoppingBag_body>h2{
+      	position: relative;
+      	left: 1050px;
+      }
+      #buy{
+      	align-content:center;
+      	float:left;
+      	position: relative;
+      	left: 800px;
+      }
+      #buy>button,h3{
+      	position: fixed;
+      }
+      #buy>button{
+      width: 200px;
+      height: 40px;
+      background-color:#a5dfd3;
+      border-radius:5px 5px 5px 5px;
+      border-color:#a5dfd3;
+      color : white;
+      margin-bottom: 20px;
+      }
+      body,html{
+      align-content: center;
+      }
+      
+      
     </style>
   </head>
   <body>
@@ -61,6 +97,9 @@
         <li><a href="#">리뷰게시판</a></li>
       </ul>
     </navside>
+    <div id="shoppingBag_body">
+    <h2>장바구니</h2>
+    <div id="shoppingBag_list">
    <c:forEach items="${requestScope.sList}" var="sOne" varStatus="index">
       <table border="1">
     <tr>
@@ -81,10 +120,12 @@
   </table>
     <br><br>
     </c:forEach>
-	<div>
+    </div>
+	<div id="buy">
+		<h3>합계:${requestScope.shoppingBagTotalPrice}</h3>
+		<br><br><br>
 		<button>결제하기</button>
-		<br><br>
-		<p>총 결제 금액:${requestScope.shoppingBagTotalPrice}</p>
+	</div>
 	</div>
   <footer class="fixed-bottom">
     <div id="footer">

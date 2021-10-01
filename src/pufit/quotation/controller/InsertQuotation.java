@@ -51,13 +51,10 @@ public class InsertQuotation extends HttpServlet {
 		int uploadFileLimit = 5*1024*1024;
 		String enType = "UTF-8";
 		MultipartRequest multi = new MultipartRequest(request, uploadFilePath, uploadFileLimit, enType, new DefaultFileRenamePolicy());
-		Enumeration files = multi.getFileNames();
-		String file = (String)files.nextElement();
-		String fileName = multi.getFilesystemName(file);
-		System.out.println(fileName);
-		System.out.println("../../quotationImage/" + fileName);
+		Enumeration files = multi.getFileNames(); // 여기
+		String file = (String)files.nextElement();// 세줄로
+		String fileName = multi.getFilesystemName(file);// 파일이름 가져오기 성공했는데 이유를 모르겠음
 		String userId = "khuser";
-		//String image = "image";
 		String subject = multi.getParameter("subject");
 		String category = multi.getParameter("category");
 		String contents = multi.getParameter("contents");
@@ -70,7 +67,6 @@ public class InsertQuotation extends HttpServlet {
 		quotation.setQuotationImage(image);
 		quotation.setUserId(userId);
 		quotation.setDesignerId(designerId);
-		//System.out.println(quotation.getContents()); 확인용		
 		int result = new QuotationService().insertQuotation(quotation);
 		if(result>0) {
 			response.sendRedirect("/quotation/userCheck");
