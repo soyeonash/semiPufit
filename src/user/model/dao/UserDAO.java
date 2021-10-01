@@ -181,7 +181,7 @@ public class UserDAO {
 	public int removeUser(Connection conn, String userId, String userPwd) {
 		
 		PreparedStatement pstmt = null;
-		String sql = "SELECT COUNT(*) AS IDCHECK FROM DESIGNER WHERE DESIGNER_ID = ? AND DESIGNER_PWD = ?";
+		String sql = "SELECT COUNT(*) AS IDCHECK FROM CUSTOMER WHERE USER_ID = ? AND USER_PWD = ?";
 		ResultSet rset = null;
 		
 		try {
@@ -202,15 +202,16 @@ public class UserDAO {
 		return 0;
 	}
 
-	public int deleteUser(Connection conn, String userId) {
+	public int deleteUser(Connection conn, String userId, String userPwd) {
 		
 		PreparedStatement pstmt = null;
-		String sql = "DELETE FROM DESIGNER WHERE USER_ID = ?";
+		String sql = "DELETE FROM CUSTOMER WHERE USER_ID = ? AND USER_PWD = ?";
 		int result = 0;
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();

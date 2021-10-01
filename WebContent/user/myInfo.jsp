@@ -21,6 +21,9 @@
             $("#pwre-feedback").hide();
             $("#phone-feedback").hide();
             $("#email-feedback").hide();
+            $("#user-emailCheck").hide();
+            
+            var emailCheck = null;
             
             // 비밀번호 재인증 유효성 검사
             
@@ -39,6 +42,56 @@
                         $("#pwre-feedback").hide();
                     }
                 }
+				
+			})
+			
+			
+			// 이메일 인증
+			
+			$(document).on("click", ".inquiry-button", function(e){
+				e.preventDefault();
+				
+				var userEmail = $("#user-email").val();
+				var userEmailReg = /^([\w\.\_\-])*[a-zA-Z0-9]+([\w\.\_\-])*([a-zA-Z0-9])+([\w\.\_\-])+@([a-zA-Z0-9]+\.)+[a-zA-Z0-9]{2,8}$/;
+				if(userEmail == ""){
+					$("#email-feedback").show();
+					$("#email-feedback").css("color", "red");
+					$("#email-feedback").text("이메일을 입력해주세요");
+					$("#user-email").focus();
+					return false;
+				}else if(!userEmail == ""){
+					$("#email-feedback").hide();
+				}
+				
+				
+				if(!userEmailReg.test(userEmail)){
+					$("#email-feedback").show();
+					$("#email-feedback").css("color", "red");
+					$("#email-feedback").text("이메일을 양식에 맞게 입력해주세요");
+					$("#user-email").focus();
+					return false;
+				}else{
+					$("#email-feedback").hide();
+				}
+				
+				$.ajax({
+					type : "get",
+					url : "/ajax/emailCheck",
+					async : false,
+					data : {
+						"userEmail" : userEmail
+					},
+					success : function(response){
+						$("#user-emailCheck").show();
+						emailCheck = response;
+						return true;
+					},
+					error : function(xhr, status, arr){
+						return false;
+						alert(err);
+					}
+					
+				})
 				
 			})
 			
@@ -116,6 +169,18 @@
                 }else{
                     $("#email-feedback").hide();
                 }
+                
+                if(emailCheck != $("#user-emailCheck").val()){
+					$("#email-feedback").show();
+					$("#email-feedback").css("color", "red");
+					$("#email-feedback").text("인증번호가 틀렸습니다 인증번호를 다시 받아주시기 바랍니다");
+					$("#user-email").focus();
+					return false;
+				}else{
+					$("#email-feedback").hide();
+				}
+                
+                
 
                 if(userPhone == ""){
                     $("#phone-feedback").show();
@@ -159,12 +224,12 @@
                             <p>구매 내역</p>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="/wishlist/select?userId=${user.userId }">
                         <div class="menu">
                             <p>찜 목록</p>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="/user/removeUser.jsp">
                         <div class="menu">
                             <p>회원 탈퇴</p>
                         </div>
@@ -174,14 +239,15 @@
             <div class="page-content">
                 <div class="main-content">
                     <div class="div-information">
-                        <p>님의 회원정보</p>
+                        <p>${user.userName }님의 회원정보</p>
                     </div>
                     <form action="/user/modify" method="post">
                         <div>
                             <fieldset style ="border : 0px;">
                                 <legend style="width:100%;" style="padding:0px;"><b>아이디</b>
                                     <div class="user-inquiry">
-                                        <div class="no-modify" name="user-id">khuser</div>
+                                        <div class="no-modify">${user.userId}</div>
+                                        <input type="hidden" name="user-id" value="${user.userId }">
                                     </div>
                                 </legend>
                             </fieldset>
@@ -204,16 +270,16 @@
                             <fieldset style ="border : 0px;">
                                 <legend style="width:100%;" style="padding:0px;"><b>이름</b>
                                     <div class="user-inquiry">
-                                        <div class="no-modify" name="user-id">홍길동</div>
+                                        <div class="no-modify" name="user-id">${user.userName }</div>
                                     </div>
                                 </legend>
                             </fieldset>
                             <fieldset style ="border : 0px;">
                                 <legend style="width:100%;" style="padding:0px;"><b>이메일</b>
                                     <div class="user-inquiry">
-                                        <input type="text"  class="inquiry-input" name="user-email" id="user-email" style="display:block">
+                                        <input type="text"  class="inquiry-input" name="user-email" id="user-email" value="${user.userEmail }">
                                         <button class="inquiry-button">인증</button><br>
-                                        <input type="text"  class="inquiry-input" name="user-email" id="user-email">
+                                        <input type="text"  class="inquiry-input" name="user-email" id="user-emailCheck">
                                         <div class="modify" id="email-feedback">양식에 맞게 입력해주세요</div>
                                     </div>
                                 </legend>
@@ -221,7 +287,7 @@
                             <fieldset style ="border : 0px;">
                                 <legend style="width:100%;" style="padding:0px;"><b>전화번호</b>
                                     <div class="user-inquiry">
-                                        <input type="text"  class="inquiry-input" name="user-phone" id="user-phone">
+                                        <input type="text"  class="inquiry-input" name="user-phone" id="user-phone" value="${user.userPhone }">
                                         <div class="modify" id="phone-feedback">양식에 맞게 입력해주세요</div>
                                     </div>
                                 </legend>

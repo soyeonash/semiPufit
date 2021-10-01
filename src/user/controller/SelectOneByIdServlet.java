@@ -32,9 +32,10 @@ public class SelectOneByIdServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		User user = new UserService().printOneById(userId);
 		if(user != null) {
-			// 성공페이지
+			request.setAttribute("user", user);
+			request.getRequestDispatcher("/user/myInfo.jsp").forward(request, response);
 		}else {
-			// 실패페이지
+			request.getRequestDispatcher("/user/error.html").forward(request, response);
 		}
 	}
 

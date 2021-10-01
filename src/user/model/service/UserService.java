@@ -160,11 +160,11 @@ public class UserService {
 		
 		try {
 			conn = jdbcTemplate.createStatement();
-			result = new UserDAO().removeUser(conn, userId, userPwd);
+			result = new UserDAO().deleteUser(conn, userId, userPwd);
 			if(result > 0) {
-				result = new UserDAO().deleteUser(conn, userId);
+				JDBCTemplate.commit(conn);
 			}else {
-				result = 0;
+				JDBCTemplate.rollback(conn);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

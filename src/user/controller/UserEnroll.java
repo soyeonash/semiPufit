@@ -49,7 +49,7 @@ public class UserEnroll extends HttpServlet {
 		int result = new UserService().userEnroll(user);
 		
 		if(result > 0) {
-			System.out.println("회원가입 성공");
+			request.getRequestDispatcher("/user/login.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("/user/error.html");
 		}

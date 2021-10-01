@@ -38,16 +38,18 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");;
+		request.setCharacterEncoding("UTF-8");
 		String loginId = request.getParameter("id-bar");
 		String loginPw = request.getParameter("pw-bar");
 		User user = new UserService().loginUser(loginId, loginPw);
 		if(user != null) {
 			if("FALSE".equals(user.getAdmin())) {
-			HttpSession session = request.getSession();
-			session.setAttribute("userId", user.getUserId());
-			
+				HttpSession session = request.getSession();
+				session.setAttribute("userId", user.getUserId());
+				System.out.println("일반유저 로그인");
+				request.getRequestDispatcher("/").forward(request, response);
 			}else {
+				System.out.println("관리자 페이지 이동");
 				// 관리자 페이지
 			}
 			

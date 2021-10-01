@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/remove.css">
-    <title>회원탈퇴</title>
+    <link rel="stylesheet" type="text/css" href="../css/wishList.css">
+    <title>찜 목록</title>
 </head>
 <body>
     <div id="content">
@@ -47,18 +48,30 @@
             <div class="page-content">
                 <div class="main-content">
                     <div class="div-information">
-                        <p>회원탈퇴</p>
+                        <p>${userId }님의 찜목록</p>
                     </div>
-                    <form action="/user/remove" method="post">
-                        <div id="content-bar">
-                            <p>회원님의 탈퇴를 위해 </p> <p style="color:red;">&nbsp;비밀번호를 한번 더 입력</p> <p>해주시기 바랍니다</p>
-                        </div>
-                        <div id="pw-div">
-                        	<input type="hidden" name="user-id" value="${user.userId }">
-                            <input type="password" name="user-pw" id="user-pw" placeholder="비밀번호를 입력해주세요">
-                        </div>
-                        <input type="submit" value="회원탈퇴" class="remove-button">
-                    </form>
+                    <div id="div-wish">
+                    	<c:forEach items="${wList }" var="wishList" varStatus="index">
+	                        <div class="wish-box">
+	                            <a href="/wishlist/remove?wishListNo=${wishList.wishListNo }&userId=${wishList.userId }"> 
+	                                <div class="sect02">
+	                                    <div class="line-box">
+	                                      <span class="line-01"></span>
+	                                      <span class="line-02"></span>
+	                                    </div>
+	                                </div>
+	                            </a>
+	                            <a href=""> <!-- 상품 상세페이지 쿼리스트링으로 상품코드 -->
+	                                <div class="img-box">
+										<img src="${wishList.productImage }">
+	                                </div>
+	                                <div class="name-box">
+										<p>${wishList.productName }</p>
+	                                </div>
+	                            </a>
+	                        </div>
+                    	</c:forEach>                    
+                    </div>
                 </div>
             </div>
         </div>

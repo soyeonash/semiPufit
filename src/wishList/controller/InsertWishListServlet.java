@@ -1,4 +1,4 @@
-package user.controller;
+package wishList.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,17 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import wishList.model.service.WishListService;
+
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class InsertWishListServlet
  */
-@WebServlet("/user/logout")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/wishlist/insert")
+public class InsertWishListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public InsertWishListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,10 +31,12 @@ public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session = request.getSession();
-		if(session != null) {
-			System.out.println("탈퇴완료");
-			session.invalidate();
-			request.getRequestDispatcher("/user/login.jsp").forward(request, response);
+		String userId = (String)session.getAttribute("userId");
+		String productCode = request.getParameter("productCode");
+		
+		int result = new WishListService().insertWishList(userId, productCode);
+		if(result > 0) {
+			request.getRequestDispatcher("/").forward(request, response);
 		}else {
 			request.getRequestDispatcher("/user/error.html").forward(request, response);
 		}

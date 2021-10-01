@@ -1,10 +1,8 @@
 @charset "UTF-8";
-
 body, html{
     margin:0px;
     padding:0px;
     width:100%;
-    height:100%;
     
     font-family: 'Jua', sans-serif;
 }
@@ -20,15 +18,15 @@ a:visited{
     color:black;
 }
 
+
 #content{
     width:100%;
-    height:100%;
     position:relative;
 }
 
     .mypage-main{
         width:1200px;
-        height:600px;
+        height:900px;
         background-color:honeydew;
         border : 1px solid rgb(216, 230, 216);
         position:absolute;
@@ -37,7 +35,8 @@ a:visited{
     }
 
     .sidebar{
-
+        width:300px;
+        height:800px;
         
         float:left;
         margin-top:50px;
@@ -89,7 +88,7 @@ a:visited{
     }
     .main-content{
         width:840px;
-        height:500px;
+        
         border : 1px solid rgb(179, 211, 0);
         margin-left:30px;
         margin-top:50px;
@@ -110,74 +109,76 @@ a:visited{
             margin-left:20px;
             margin-bottom:10px;
         }
-    
-    form>div>p{
-        
-        float:left;
-    }
 
-    #content-bar{
-        text-align: center;
-        width:500px;
-        height:50px;
-        margin-left:220px;
+    #div-wish{
+        width:800px;
+        height:100%;
+        margin-left:20px;
+        padding-bottom:30px;
+        overflow:hidden;
     }
-    #pw-div{
+        .wish-box{
+            width:170px;
+            height:240px;
+            float:left;
+            margin-left:24px;
+            margin-top:40px;
+            position:relative;
+        }
+
+    .img-box{
         width:100%;
-        height:50px;
-        display:block;
-        
+        height:200px;
+        background-color:gainsboro;
     }
-
-    #user-pw{
-        width:200px;
-        height:25px;
-        margin-top:10px;
-        padding-left:5px;
-        border : 2px solid rgb(95, 95, 95);
-        font-size:16px;
-        color:lightslategray;
-        border-radius: 3px;
-        margin-left:320px;
-    }
-    #user-pw::placeholder{
-        font-family: 'Jua', sans-serif;
-        font-size:14px;
-        line-height: 25px;
-    }
-
-    
-
-    fieldset{
-        margin:0px;
-        padding:0px;
-        margin-top : 40px;
-    }
-    .user-inquiry{
-        width:200px;
-    }
-    .inquiry-input{
-        width:200px;
-        height:25px;
-        margin-top:10px;
-        padding-left:5px;
-        border : 2px solid rgb(202, 202, 202);
-        font-size:16px;
-        color:lightslategray;
-        border-radius: 3px;
-    }
-
-    .remove-button{
-        width:100px;
+    .name-box{
+        width:100%;
         height:40px;
-        background-color:rgb(154, 255, 154);
-        border-radius: 5px;
-        border: 0;
-        font-family: 'Jua', sans-serif;
-        margin-left:370px;
-        margin-top:30px;
+        padding-top:5px;
     }
-    .remove-button:hover{
-        background-color:rgb(0, 165, 148);
-        color:white;
+
+        .name-box>p{
+            margin:0px;
+            padding:0px;
+            text-align: center;
+            font-size:12px;
+        }
+
+
+      .sect02 {
+        position: absolute;
+        width: 15px; /* X 사이즈 */
+        height: 15px; /* X 세로 중앙 */
+        margin: 0 auto; /* 가운데 정렬 */
+        bottom:215px;
+        left:150px;
+      }
+      
+      .sect02 .line-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        height: 100%;
+      }
+      
+      .sect02 .line-box > span {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        height: 2px;
+        background-color: rgb(128, 128, 128);
+      }
+      
+      .sect02 .line-01 {
+        transform: rotate(135deg) translateX(0%);
+      }
+      
+      .sect02 .line-02 {
+        transform: rotate(45deg) translateX(0%);
+      }
+
+    .wish-box:hover{
+        box-shadow: 1px 2px 1px 1px lightgray;
     }

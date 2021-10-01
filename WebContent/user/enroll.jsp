@@ -312,7 +312,7 @@
         <h1>퍼핏에 오신것을 환영합니다</h1>
         <div id="login-box">
             <div>
-                <form action="/designer/enroll" method="post">
+                <form action="/user/enroll" method="post">
                     <fieldset style ="border : 0px;">
                         <legend style="width:100%;" style="padding:0px;"><b>아이디</b>
                             <div class="membership-div">

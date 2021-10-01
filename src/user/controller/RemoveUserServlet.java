@@ -29,25 +29,25 @@ public class RemoveUserServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
 		
-		String userId = (String)session.getAttribute("userId");
-		String userPwd = request.getParameter("userPwd");
-		
-		int result = new UserService().removeUser(userId, userPwd);
-		if(result > 0) {
-			// 회원탈퇴 페이지
-		}else {
-			// 회원탈퇴 비밀번호 오류 페이지
-		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		HttpSession session = request.getSession();
+		
+		String userId = (String)session.getAttribute("userId");
+		String userPwd = request.getParameter("user-pw");
+		System.out.println(userId + " " + userPwd);
+		
+		int result = new UserService().removeUser(userId, userPwd);
+		if(result > 0) {
+			response.sendRedirect("/user/logout");
+		}else {
+			System.out.println("비번틀림");
+		}
 	}
 
 }

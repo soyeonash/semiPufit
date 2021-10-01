@@ -13,24 +13,23 @@
       crossorigin="anonymous"
     ></script>
 
-    <link rel="stylesheet" type="text/css" href="./menu/menu.css" />
+    <link rel="stylesheet" type="text/css" href="../menu/menu.css" />
     <script src="./menu/menu.js"></script>
-    <link rel="stylesheet" type="text/css" href="./footer/footer.css" />
+    <link rel="stylesheet" type="text/css" href="../footer/footer.css" />
   </head>
   <body>
     <nav class="navbar">
       <div class="navbar_logo"></div>
-
       <ul class="navbar_menu">
         <li><a href="#">SHOP</a></li>
         <li><a href="#">견적서</a></li>
         <li><a href="#">디자이너</a></li>
-        <li><a href="#">리뷰게시판</a></li>
-        <li><a href="#">고객센터</a></li>
+        <li><a href="/user/practice?userId=${userId }">결제하기</a></li>
+        <li><a href="/user/logout">로그아웃</a></li>
       </ul>
 
       <ul class="navbar_icons">
-        <li><i class="fas fa-user"></i></li>
+        <a href="/user/mypage?userId=${userId }"><li><i class="fas fa-user"></i></li></a>
         <li><i class="fas fa-weight-hanging"></i></li>
         <li id="alarm_btn"><i class="fas fa-bell"></i></li>
         <li id="navbar_toogleBtn"><i class="fas fa-bars"></i></li>
@@ -48,15 +47,13 @@
     </navside>
 
     <main>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
+		<a href="/wishlist/insert?productCode=D1&userId=${userId }">
+	      <div style="width:300px; height:300px;">
+		      <img src="/productImage/양초.jpg" style="width:100%; height:100%;">
+	      </div>
+		</a>
+      
+      
       <br>
       <br>
       <br>

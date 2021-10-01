@@ -142,7 +142,7 @@
                     <input type="submit" formaction="/designer/login" id="designer-button" value="디자이너 로그인">
                 </form>
                 <div class="forid">
-                    <p><a href="/user/enroll.jsp" id="page">회원가입</a> | <a href="javascript:void(0)" class="for-id">아이디찾기</a> | <a href="javascript:void(0)" class="for-pw">비밀번호찾기</a></p>
+                    <p><a href="/user/selectTypeEnroll.html" id="page">회원가입</a> | <a href="javascript:void(0)" class="for-id">아이디찾기</a> | <a href="javascript:void(0)" class="for-pw">비밀번호찾기</a></p>
                 </div>
             </div>
             <div id="forid-block" style="display:none">

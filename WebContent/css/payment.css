@@ -1,0 +1,273 @@
+@charset "UTF-8";
+
+body, html{
+    margin:0px;
+    padding:0px;
+    width:100%;
+    height:100%;
+    
+    font-family: 'Jua', sans-serif;
+}
+
+
+#content{
+    width:100%;
+    height:100%;
+    position:relative;
+}
+
+    #payment-main{
+        width:1200px;
+        height:100%;
+        position:absolute;
+        left:50%;
+        transform:translateX(-50%);
+    }
+    h1{
+        text-align: left;
+    }
+
+    #div-shipping{
+        width:540px;
+        height:600px;
+        margin:0px;
+        padding:0px;
+        margin-left:40px;
+        float:left;
+        background-color:white;
+        box-shadow: 1px 1px 1px 1px lightgrey;
+        position:relative;
+    }
+        #div-shipping>div{
+            width:500px;
+            height:560px;
+            margin-left:20px;
+            margin-top:20px;
+        }
+    #div-payment{
+        width:540px;
+        margin:0px;
+        padding:0px;
+        margin-left:40px;
+        float:left;
+        background-color:white;
+        box-shadow: 1px 1px 1px 1px lightgrey;
+    }
+
+        #div-payment>div{
+            width:500px;
+            margin-left:20px;
+            margin-top:20px;
+            padding-bottom:40px;
+        }
+
+    h3{
+        margin:0px;
+        padding:0px;
+    }
+
+    fieldset{
+        margin:0px;
+        padding:0px;
+        margin-top : 40px;
+    }
+    .user-inquiry{
+        width:100%;
+    }
+    .shipping-input{
+        width:210px;
+        height:25px;
+        margin-top:10px;
+        padding-left:5px;
+        border : 2px solid rgb(202, 202, 202);
+        font-size:14px;
+        color:lightslategray;
+        border-radius: 3px;
+    }
+    
+    #shipping-content{
+    	width:80%;
+    	height:100%;
+    	float:left;
+    }
+	
+	#shipping-btn{
+		width:20%;
+		hieght:100%;
+		float:left;
+	}    
+    
+    
+    #save{
+        margin-left:17px;
+    }
+    
+    #shipping-phone{
+        margin-left:20px;
+    }
+    #shipping-email{
+        width:454px;
+    }
+    #shipping-sub{
+        width:333px;
+    }
+
+    .shipping-button{
+        width:100px;
+        height:30px;
+        background-color:rgb(199, 255, 147);
+        border:lightgrey;
+        position: relative;
+        margin-left:20px;
+        top:1px;
+        font-size:13px;
+        font-family: 'Jua', sans-serif;
+    }
+    .shipping-button:hover{
+        background-color:rgb(31, 78, 0);
+        color : white;
+    }
+    
+    .feedback{
+            font-size:14px;
+            color : rgb(66, 66, 66);
+            margin-top : 5px;
+            margin-left:320px;
+    }
+
+    #shipping-list{
+        width:400px;
+        height:400px;
+        background-color:rgb(212, 255, 212);
+        position:absolute;
+        left:500px;
+        bottom:110px;
+    }
+     #shipping-list>div{
+        width:360px;
+        height:360px;
+        margin-left:20px;
+        margin-top:20px;
+     }
+     #shipping-list p{
+         margin:0px;
+         padding:0px;
+         margin-bottom:20px;
+     }
+
+     .shipping{
+         width:100%;
+         height:60px;
+         border-top:1px solid black;
+         border-bottom:1px solid black;
+     }
+        .main-shipping{
+            width:100%;
+            height:30px;
+            font-size:13px;
+            line-height:30px;
+        }
+        .sub-shipping{
+            width:100%;
+            height:30px;
+            font-size:13px;
+            line-height:30px;
+            text-decoration: none;
+        }
+
+        .inquiry-button{
+            width:65px;
+            height:20px;
+            background-color:lightgrey;
+            border:lightgrey;
+            position: relative;
+        	margin-top:4px;
+            top:5px;
+            font-size:11px;
+            float:right;
+        }
+        .inquiry-button:hover{
+            background-color:lightslategray;
+            color : white;
+        }
+
+
+		input{
+			font-family: 'Jua', sans-serif;
+		}
+		
+		
+		#pay-btn{
+			width:150px;
+			height:40px;
+			background-color:rgb(174, 255, 142);
+			font-family: 'Jua', sans-serif;
+			border : none;
+			border-radius: 10px;
+			margin-left:175px;
+			margin-top:40px;
+		}
+		#pay-btn:hover{
+			color:white;
+			background-color:rgb(103, 156, 82);
+		}
+		
+		
+
+
+
+		#total-price{
+			width:100%;
+			height:50px;
+			text-align:right;
+			border-top:2px solid lightgray;
+			margin-top:30px;
+		}
+		#total-price>p{
+			margin:0px;
+			padding:0px;
+			margin-right:10px;
+			line-height:50px;
+			font-size:18px;			
+		}
+
+
+
+
+        table.title {
+            border-collapse: collapse;
+            text-align: center;
+            line-height: 1.5;
+            border-left: 1px solid #ccc;
+            margin: 10px 5px;
+          }
+          
+          table.title thead th {
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-bottom: 2px solid #c00;
+            background: #ffffd8;
+          }
+          table.title tbody th {
+            width: 400px;
+            line-height:60px;
+            font-size : 15px;
+            color : rgb(0, 0, 0);
+            font-weight: bold;
+            vertical-align: top;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            background: #ffffff;
+          }
+          table.title td {
+            width: 100px;
+            height:60px;
+            font-size:14px;
+            line-height:60px;
+            background-color:white;
+            text-align: center;
+            vertical-align: top;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+          }
