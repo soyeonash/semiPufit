@@ -1,4 +1,4 @@
-package pufit.product.controller;
+package product.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pufit.product.model.service.ProductService;
+import product.model.service.ProductService;
 
 /**
- * Servlet implementation class ProductDeleteServlet
+ * Servlet implementation class ProductReplyDeleteServlet
  */
-@WebServlet("/product/delete")
-public class ProductDeleteServlet extends HttpServlet {
+@WebServlet("/productReply/delete")
+public class ProductReplyDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductDeleteServlet() {
+    public ProductReplyDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,9 +29,10 @@ public class ProductDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String productCode = request.getParameter("productCode");
-		int result = new ProductService().deleteProduct(productCode);
+		int productReplyNo = Integer.parseInt(request.getParameter("productReplyNo"));
+		int result = new ProductService().productReplyDelete(productReplyNo);
 		if(result>0) {
-			request.getRequestDispatcher("/product/productSuccess.html").forward(request, response);
+			response.sendRedirect("/product/detail?productCode="+productCode);
 		} else {
 			request.getRequestDispatcher("/product/productError.html").forward(request, response);
 		}

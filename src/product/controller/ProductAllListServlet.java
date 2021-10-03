@@ -1,4 +1,4 @@
-package pufit.product.controller;
+package product.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import pufit.product.model.service.ProductService;
-import pufit.product.model.vo.Product;
+import product.model.service.ProductService;
+import product.model.vo.Product;
 
 /**
  * Servlet implementation class ProductAllListServlet
@@ -34,6 +34,8 @@ public class ProductAllListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//HttpSession session = request.getSession();
 		//String userId=(String)session.getAttribute("userId");
+		String userId = "admin";
+		
 		String item = request.getParameter("item");
 		System.out.println("item : "+item);
 		String selectOne = request.getParameter("selectOne");
@@ -44,16 +46,27 @@ public class ProductAllListServlet extends HttpServlet {
 			selectOne="최신순";
 		}
 		List<Product> pList = new ProductService().productAllList(item, selectOne);
-
-		if(!pList.isEmpty()) {
-			request.setAttribute("pList", pList);
-			request.setAttribute("category", item); //ajax처리 위해서.
-			request.setAttribute("select", selectOne); //ajax처리 위해서.
-			request.getRequestDispatcher("/product/productAllList.jsp").forward(request, response);
-			//System.out.println("성공??");
+		List<Product> productList = new ProductService().productAll();
+		if(userId=="admin") {
+			if(!productList.isEmpty()) {
+				request.setAttribute("productList", productList);
+				request.getRequestDispatcher("/product/adminProductList.jsp").forward(request, response);
+			} else {
+				request.setAttribute("productList", productList);
+				request.getRequestDispatcher("/product/adminProductList.jsp").forward(request, response);
+			}
+			
 		} else {
-			request.setAttribute("pList", pList);
-			request.getRequestDispatcher("/product/productAllList.jsp").forward(request, response);
+			if(!pList.isEmpty()) {
+				request.setAttribute("pList", pList);
+				request.setAttribute("category", item); //ajax처리 위해서.
+				request.setAttribute("select", selectOne); //ajax처리 위해서.
+				request.getRequestDispatcher("/product/productAllList.jsp").forward(request, response);
+				//System.out.println("성공??");
+			} else {
+				request.setAttribute("pList", pList);
+				request.getRequestDispatcher("/product/productAllList.jsp").forward(request, response);
+			}			
 		}
 	}
 

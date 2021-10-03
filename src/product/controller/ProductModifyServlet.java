@@ -1,12 +1,9 @@
-package pufit.product.controller;
+package product.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.sql.Date;
 
-import javax.activation.FileDataSource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,20 +13,20 @@ import javax.servlet.http.HttpServletResponse;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import pufit.product.model.service.ProductService;
-import pufit.product.model.vo.Product;
+import product.model.service.ProductService;
+import product.model.vo.Product;
 
 /**
- * Servlet implementation class ProductInsertServlet
+ * Servlet implementation class ProductModifyServlet
  */
-@WebServlet("/product/insert")
-public class ProductInsertServlet extends HttpServlet {
+@WebServlet("/product/modify")
+public class ProductModifyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductInsertServlet() {
+    public ProductModifyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,8 +34,10 @@ public class ProductInsertServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    //화면을 보여주는 용도
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//request.getRequestDispatcher("/product/productInsert.html");
+		String productCode = request.getParameter("productCode");
+		
 	}
 
 	/**
@@ -46,10 +45,8 @@ public class ProductInsertServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-	
 		//나중에 session 추가(admin아이디)?
 
-		
 		//폴더(productImgFolder)에 저장
 		String uploadFilePath = request.getServletContext().getRealPath("productImgFolder"); //경로
 		System.out.println("업로드 리얼 패스  : "+uploadFilePath);
@@ -64,40 +61,30 @@ public class ProductInsertServlet extends HttpServlet {
 		String filePath = uploadFile.getPath();
 		
 		String productCode = multi.getParameter("productCode");
-		String productName = multi.getParameter("productName");
-		String productPrice = multi.getParameter("productPrice");
 		String productSize = multi.getParameter("productSize");
-		String highKind = multi.getParameter("highKind");
-		String rowKind = multi.getParameter("rowKind");
+		String productPrice = multi.getParameter("productPrice");
 		String productContents = multi.getParameter("productContents");
 		String productImgName = multi.getFilesystemName("productImg");
 		
 		System.out.println("파일 패스 스트링?(경로) : "+filePath);
 		
-		//long fileSize = uploadFile.length();
-		//SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+		//String productCode = request.getParameter("productCode");
+		String productName = request.getParameter("productName");
+		String productImage = request.getParameter("productImage");
+		//String productSize = request.getParameter("productSize");
+		//String productPrice = request.getParameter("productPrice");
+		String highKind = request.getParameter("highKind");
+		String rowKind = request.getParameter("rowKind");
+		//String productContents = request.getParameter("productContents");
+		//String productImgName;
 		
-		//Timestamp uploadTime = Timestamp.valueOf(formatter.format(Calendar.getInstance().getTimeInMillis()));
-		//정보들을 담을 클래스
-		Product product = new Product(productCode, productName, filePath, productPrice, productSize, highKind, rowKind, productContents, productImgName);
-		/*
-		 * product.setProductCode(productCode); product.setProductName(productName);
-		 * product.setProductImage(filePath); product.setProductPrice(productPrice);
-		 * product.setProductSize(productSize); product.setHighKind(highKind);
-		 * product.setRowKind(rowKind); product.setProductContents(productContents);
-		 * fileData.setFilePath(filePath);
-		 */
-		int result = new ProductService().insertProduct(product);
+		Product product = new Product(productCode, filePath, productSize, productPrice, productContents, productImgName);
+		int result = new ProductService().modifyProduct();
 		if(result>0) {
-			response.sendRedirect("/product/productSuccess.html");
-			System.out.println("성공!!!");
+			request.getRequestDispatcher("/product/adminProductDetail.jsp").forward(request, response);
 		} else {
-//			response.sendRedirect("/product/productError.html");
-			System.out.println("실패....");
+			request.getRequestDispatcher("/product/productError.html").forward(request, response);
 		}
-		
-		
-		
 	}
 
 }

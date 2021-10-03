@@ -15,8 +15,8 @@
 		상품 코드 : <input type="text" name="productCode"><br>
 		이름 : <input type="text" name="productName"><br>
 		설명(내용) : <input type="text" name="productContents"><br>
-		가격 : <input type="text" name="productPrice"><br>
 		사이즈 : <input type="text" name="productSize"><br>
+		가격 : <input type="text" name="productPrice"><br>
 		상위 종류 : <input type="text" name="highKind"><br>
 		하위 종류 : <input type="text" name="rowKind"><br>
 		

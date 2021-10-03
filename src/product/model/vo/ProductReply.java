@@ -1,4 +1,4 @@
-package pufit.product.model.vo;
+package product.model.vo;
 
 import java.sql.Date;
 
@@ -8,8 +8,8 @@ public class ProductReply {
 	private String productReplyContents;
 	private String writerId;
 	private Date productReplyDate;
-	private String productReplyScore;
-	private String productReportCount;
+	private int productReplyScore;
+	private int productReportCount;
 	
 	public ProductReply() {}
 
@@ -53,19 +53,19 @@ public class ProductReply {
 		this.productReplyDate = productReplyDate;
 	}
 
-	public String getProductReplyScore() {
+	public int getProductReplyScore() {
 		return productReplyScore;
 	}
 
-	public void setProductReplyScore(String productReplyScore) {
+	public void setProductReplyScore(int productReplyScore) {
 		this.productReplyScore = productReplyScore;
 	}
 
-	public String getProductReportCount() {
+	public int getProductReportCount() {
 		return productReportCount;
 	}
 
-	public void setProductReportCount(String productReportCount) {
+	public void setProductReportCount(int productReportCount) {
 		this.productReportCount = productReportCount;
 	}
 

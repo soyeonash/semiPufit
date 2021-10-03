@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="pufit.product.model.vo.Product"%>
+<%@page import="product.model.vo.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -20,7 +20,7 @@
     <script src="./menu/menu.js"></script>
     <link rel="stylesheet" type="text/css" href="../footer/footer.css" />
     <link rel="stylesheet" type="text/css" href="./productAllList.css" />
-  </head>
+ </head>
   <body>
     <nav class="navbar">
       <div class="navbar_logo"></div>
@@ -58,9 +58,9 @@
                 src="./test.png" alt="">
                 <h1>SHOP</h1>
             </div>
-            <form action="/product/search" method="get">
-	            <input type="search" id="searchProduct">
-	            <input type="submit" value="검색">
+            <form name="search-form">
+	            <input type="text" id="searchProduct">
+	            <input type="button" value="검색" onclick="getSearchList()">
             </form>
 
             <div class = "product category">
@@ -95,23 +95,6 @@
                         <p style="position: relative; right:210px; top: 10px; font-size: 30px;">목록</p>              
                     </div>
                     <div class="select-layer">
-                       <!--  <div class="select-sort" id="TopSort">
-                            <a href="#" style="text-decoration: none; color: black;">
-                                <span>최신순</span>&nbsp;&nbsp;
-                                <button id="select-button" style="border: 0; outline: 0; background-color: transparent;
-                                font-size: 20px; color: rgb(64, 177, 162); cursor: pointer;">V</button>
-                            </a>
-                        </div>
-                        <div class="select-sort" id="divTopSortLayer">
-                            <ul>
-                                <li>
-                                    <a href="#">인기순</a>
-                                </li>
-                                <li>
-                                    <a href="#">최신순</a>
-                                </li>
-                            </ul>
-                        </div> -->
                         <select style="width: 100px; height: 30px; font-size: 20px;" name="productOption">
                         	<option value="최신순">최신순</option>
                         	<option value="인기순">인기순</option>
@@ -222,19 +205,28 @@
 			//var selectOne=$("select[name=productOption] option:selected").text();
 			var item = $("#category").val();
 			var selectOne = $(this).val();
+			
+			location.href="/product/allList?item="+item+"&selectOne="+selectOne;
+			$(this).val().prop("selected", true);
+
 			//ajax는 url 안 바뀜
-			$.ajax({
-				async:false,
-				cache:false,
-				type:'get',
-				url:'/product/allList?item='+item+'&selectOne='+selectOne,
-				data:{selectOne:selectOne},
-				success:function(data){
-				},
-				error:function(){
-					alert("정렬 오류!");
-				}
-			});
+// 			$.ajax({
+// 				async:false,
+// 				cache:false,
+// 				type:'get',
+// 				url:'/product/allList?item='+item+'&selectOne='+selectOne,
+// 				data:{selectOne:selectOne},
+// 				success:function(data){
+// 					alert("성공!");
+// 					var e = $("#list").html(data).find('.container');
+// 					//$(".navbar_menu").html(data);
+// 					$(".container").children.remove();
+// 					$(".container").html(e);
+// 				},
+// 				error:function(){
+// 					alert("정렬 오류!");
+// 				}
+// 			});
 		});  
     });
     
@@ -244,6 +236,27 @@
 		var selectOne = $("#select").val();
 		location.href="/product/allList?item="+item+"&selectOne=최신순";
     }
+    
+    function getSearchList() {
+    	var searchKeyword = $("#searchProduct").val();
+   		//alert(searchKeyword);
+		$.ajax({
+			async:false,
+			cache:false,
+			type:'get',
+			url:'/product/search',
+			data:{searchKeyword:searchKeyword},
+			success:function(){
+				if(searchKeyword==""){
+					alert("검색어를 입력해주세요!");					
+				}
+			},
+			error:function(){
+				alert("실패!");
+			}
+		});
+    }
+	
 
 
   </script>

@@ -1,4 +1,4 @@
-package pufit.product.model.dao;
+package product.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.JDBCTemplate;
-import pufit.product.model.vo.Product;
+import product.model.vo.Product;
+import product.model.vo.ProductReply;
 
 public class ProductDAO {
 	public ProductDAO() {}
@@ -54,8 +55,8 @@ public class ProductDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<Product> pList = null;
-		System.out.println("아잍[ㅁ : "+item);
-		System.out.println("실행안되요..?(DAO)");
+//		System.out.println("아잍[ㅁ : "+item);
+//		System.out.println("실행안되요..?(DAO)");
 		String query = "SELECT * FROM PRODUCT WHERE ROW_KIND=? ORDER BY SALE_COUNT DESC";
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -182,7 +183,7 @@ public class ProductDAO {
 //		return result;
 //	}
 
-	public int productReplyWrite(Connection conn, String productCode, String replyComment, int replyScore) {
+	public int productReplyWrite(Connection conn, String productCode, String replyComment, String writerId, int replyScore) {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String query="INSERT INTO PRODUCT_REPLY VALUES(SEQ_PRODUCT_REPLY.NEXTVAL, ?, ?, 'admin', SYSDATE, ?, DEFAULT)";
@@ -240,7 +241,8 @@ public class ProductDAO {
 		PreparedStatement pstmt= null;
 		ResultSet rset = null;
 		List<Product> pList = null;
-		String query = "SELECT * FROM PRODUCT WHERE PRODUCT_NAME=?";
+		//System.out.println("서치 : "+searchKeyword);
+		String query = "SELECT * FROM PRODUCT WHERE PRODUCT_NAME LIKE ?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, "%"+searchKeyword+"%");
@@ -267,7 +269,74 @@ public class ProductDAO {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
-		return null;
+		return pList;
 	}
+
+	public List<ProductReply> selectAllProductReply(Connection conn, String productCode) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query="SELECT * FROM PRODUCT_REPLY WHERE PRODUCT_CODE=?";
+		List<ProductReply> replyList = null;
+		try {
+			pstmt =conn.prepareStatement(query);
+			pstmt.setString(1, productCode);
+			replyList = new ArrayList<ProductReply>();
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				ProductReply reply = new ProductReply();
+				reply.setProductReplyNo(rset.getInt("PRODUCT_REPLY_NO"));
+				reply.setProductCode(rset.getString("PRODUCT_CODE"));
+				reply.setProductReplyContents(rset.getString("PRODUCT_REPLY_CONTENTS"));
+				reply.setWriterId(rset.getString("WRITER_ID"));
+				reply.setProductReplyDate(rset.getDate("PRODUCT_REPLY_DATE"));
+				reply.setProductReplyScore(rset.getInt("PRODUCT_REPLY_SCORE"));
+				reply.setProductReportCount(rset.getInt("REPORT_COUNT"));
+				
+				replyList.add(reply);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return replyList;
+	}
+
+	public List<Product> productAll(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query="SELECT * FROM PRODUCT";
+		List<Product> pList = null;
+		try {
+			pstmt =conn.prepareStatement(query);
+			pList = new ArrayList<Product>();
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Product p = new Product();
+				p.setProductCode(rset.getString("PRODUCT_CODE"));
+				p.setProductName(rset.getString("PRODUCT_NAME"));
+				p.setProductImage(rset.getString("PRODUCT_IMAGE"));
+				p.setRegistrationDate(rset.getDate("PRODUCT_DATE"));
+				p.setProductPrice(rset.getString("PRODUCT_PRICE"));
+				p.setProductSize(rset.getString("PRODUCT_SIZE"));
+				p.setSaleCount(rset.getInt("SALE_COUNT"));
+				p.setHighKind(rset.getString("HIGH_KIND"));
+				p.setRowKind(rset.getString("ROW_KIND"));
+				p.setProductContents(rset.getString("PRODUCT_CONTENTS"));
+				p.setProductImgName(rset.getString("PRODUCT_IMG_NAME"));
+				
+				pList.add(p);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return pList;
+	}
+	
+	
 
 }

@@ -1,4 +1,4 @@
-package pufit.product.model.vo;
+package product.model.vo;
 
 import java.sql.Date;
 import java.util.List;
@@ -17,7 +17,7 @@ public class Product {
 	private String productImgName;
 	
 	//댓글
-	private List<ProductReply> replies;
+	private List<ProductReply> replyList;
 	
 	public Product() {}
 	//매개변수 있는 생성자
@@ -34,11 +34,11 @@ public class Product {
 		this.productImgName = productImgName;
 	}
 	
-	public List<ProductReply> getReplies(){
-		return replies;
+	public List<ProductReply> getReplyList() {
+		return replyList;
 	}
-	public void setReplies(List<ProductReply> replies) {
-		this.replies = replies;
+	public void setReplyList(List<ProductReply> replyList) {
+		this.replyList = replyList;
 	}
 	
 	public String getProductCode() {

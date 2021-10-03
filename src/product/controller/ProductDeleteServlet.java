@@ -1,28 +1,25 @@
-package pufit.product.controller;
+package product.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import pufit.product.model.service.ProductService;
-import pufit.product.model.vo.Product;
+import product.model.service.ProductService;
 
 /**
- * Servlet implementation class ProductSearchServlet
+ * Servlet implementation class ProductDeleteServlet
  */
-@WebServlet("/product/search")
-public class ProductSearchServlet extends HttpServlet {
+@WebServlet("/product/delete")
+public class ProductDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductSearchServlet() {
+    public ProductDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,17 +28,12 @@ public class ProductSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String searchKeyword = request.getParameter("searchProduct");
-//		int currentPage=  1;
-//		String currentPageVal= request.getParameter("currentPage");
-		List<Product> pList = new ProductService().productSearch(searchKeyword);
-		if(!pList.isEmpty()) {
-			request.setAttribute("pList", pList);
-			request.getRequestDispatcher("/product/productAllList.jsp").forward(request, response);
+		String productCode = request.getParameter("productCode");
+		int result = new ProductService().deleteProduct(productCode);
+		if(result>0) {
+			request.getRequestDispatcher("/product/allList").forward(request, response);
 		} else {
-			request.setAttribute("pList", pList);
-			request.getRequestDispatcher("/product/productAllList.jsp").forward(request, response);
+			request.getRequestDispatcher("/product/productError.html").forward(request, response);
 		}
 	}
 

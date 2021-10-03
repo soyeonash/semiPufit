@@ -1,12 +1,13 @@
-package pufit.product.model.service;
+package product.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
 import common.JDBCTemplate;
-import pufit.product.model.dao.ProductDAO;
-import pufit.product.model.vo.Product;
+import product.model.dao.ProductDAO;
+import product.model.vo.Product;
+import product.model.vo.ProductReply;
 
 public class ProductService {
 	private JDBCTemplate jdbcTemplate;
@@ -22,9 +23,10 @@ public class ProductService {
 			conn = jdbcTemplate.createConnection();
 			if(selectOne.equals("인기순")) {
 				pList = new ProductDAO().productSortSaleList(conn, item);
-				System.out.println("실행안되요ㅜㅠㅠㅠㅠ..?(인기순)");
+				//System.out.println("실행(인기순/판매순)");
 			}else {				
 				pList = new ProductDAO().productAllList(conn, item);
+				//System.out.println("최신순인데..");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -70,9 +72,13 @@ public class ProductService {
 	public Product productDetail(String productCode) {
 		Product product = null;
 		Connection conn = null;
+		List<ProductReply> replyList = null;
+		ProductDAO pDAO = new ProductDAO();
 		try {
 			conn = jdbcTemplate.createConnection();
-			product = new ProductDAO().productDetail(conn, productCode);
+			product = pDAO.productDetail(conn, productCode);
+			replyList = pDAO.selectAllProductReply(conn, productCode);
+			product.setReplyList(replyList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -100,12 +106,12 @@ public class ProductService {
 //		return result;
 //	}
 
-	public int productReplyWrite(String productCode, String replyComment, int replyScore) {
+	public int productReplyWrite(String productCode, String replyComment, String writerId, int replyScore) {
 		Connection conn = null;
 		int result = 0;
 		try {
 			conn= jdbcTemplate.createConnection();
-			result = new ProductDAO().productReplyWrite(conn, productCode, replyComment, replyScore);
+			result = new ProductDAO().productReplyWrite(conn, productCode, replyComment, writerId, replyScore);
 			if(result>0) {
 				JDBCTemplate.commit(conn);
 			} else {
@@ -163,6 +169,7 @@ public class ProductService {
 		//String searchPageNavi =null;
 		try {
 			conn = jdbcTemplate.createConnection();
+			//System.out.println("검ㅅ개:"+ searchKeyword);
 			pList = new ProductDAO().productSearch(conn, searchKeyword);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -171,5 +178,27 @@ public class ProductService {
 		}
 		return pList;
 	}
+
+	public List<Product> productAll() {
+		Connection conn = null;
+		List<Product> pList = null;
+		//String searchPageNavi =null;
+		try {
+			conn = jdbcTemplate.createConnection();
+			pList = new ProductDAO().productAll(conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(conn);
+		}
+		return pList;
+	}
+
+	public int modifyProduct(String productCode) {
+		
+		return 0;
+	}
+
+
 
 }
