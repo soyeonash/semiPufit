@@ -11,7 +11,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../css/payment.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 	<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
@@ -82,38 +81,53 @@
 						$("#shipping-list").hide();
 					}
 				})
+			
 				
 				
 			// 결제하기
 			$("#pay-btn").on("click", function(){
+				var method = $("#select").val();
+				var email = $("#shipping-email").val();
+				var name = $("#shipping-name").val();
+				var phone = $("#shipping-phone").val();
+				var mainAddr = $("#main-shipping").val();
+				var subAddr = $("#sub-shipping").val();
 				var IMP = window.IMP;
 				IMP.init("imp53393678");
 				IMP.request_pay({
 					pg : "inicis",
-					pay_method : "card",
+					pay_method : method,
 					merchant_uid : "merchant_" + new Date().getTime(),
-					name : "주문명 : 결제테스트",
-					amount : 1000,
-					buyer_email : "pro9735@naver.com",
-					buyer_name : "송성근",
-					buyer_tel : "010-8181-8287",
-					buyer_addr : "경기도 다산신도시",
+					name : "주문명 : 결제테스트", // 상품이름
+					amount : 1000, // 상품가격
+					buyer_email : email,
+					buyer_name : name,
+					buyer_tel : phone,
+					buyer_addr : "대표주소 : " + mainAddr + ",상세주소 : " + subAddr,
 					buyer_postcode : "123-456",
-					m_redirect_url : "/user/payment.html"
 				}, function(rsp){
 					console.log(rsp);
 					if(rsp.success){
-						var msg = "결제가 완료되었습니다";
-						msg += "고유ID : " + rsp.imp_uid;
-						msg += "상점 거래 ID" + rsp.merchant_uid;
-						msg += "결제 금액" + rsp.paid_amount;
-						msg += "카드 승인 번호" + rsp.apply_num;
+						$.ajax({
+							url : "/buyhistory/insert",
+							type : "POST",
+							data : {
+								"userId" : $("#shipping-id").val(),
+								"price" : rsp.paid_amount,
+								"productName" : rsp.name,
+								"paymentMethod" : rsp.pay_method
+							},
+							success : function(response){
+								location.href="/buyhistory/success?userId="+response.userId+"&price="+response.price+"&orderNo="+response.orderNo+"&productName="+response.productName;
+							},
+							error : function(xhr, status, err){
+								console.log(err);
+							}
+						})
 					}else{
 						var msg = "결제를 실패하였습니다";
 						msg += "에러내용 : " + rsp.error_msg;
 				}	
-				alert(msg);
-					
 				})
 			})
     			
@@ -190,20 +204,26 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div id="total-price">
-                    	<p>합계 금액 = 30000원</p>
+                    <div class="total-price">
+                    	<p id="type">결제수단</p>
+						<select id="select">
+							<option value="card">신용카드</option>
+							<option value="trans">계좌이체</option>
+							<option value="phone">휴대폰</option>
+							<option value="vbank">무퉁장입금</option>
+						</select>
                     </div>
-                <button id="pay-btn" type="button">결제하기</button>
+                    <div class="total-price" style="margin-top:0px;">
+						<p>합계 금액 = 30000원</p>
+                    </div>
+                <button id="pay-btn" type="button">결제</button>
                 </div>
             </div>
         </div>
     </div>
      <script language="javascript">
 						function goPopup() {
-							var pop = window
-									.open("../user/jusoPopup1.jsp", "pop",
-											"width=570,height=420, scrollbars=yes, resizable=yes");}
-
+							var pop = window.open("../user/jusoPopup1.jsp", "pop", "width=570,height=420, scrollbars=yes, resizable=yes");}
 						function jusoCallBack(roadFullAddr, roadAddrPart1,
 								addrDetail, roadAddrPart2, engAddr, jibunAddr,
 								zipNo, admCd, rnMgtSn, bdMgtSn, detBdNmList,

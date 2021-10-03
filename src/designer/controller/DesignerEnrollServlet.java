@@ -52,7 +52,7 @@ public class DesignerEnrollServlet extends HttpServlet {
 		if(result > 0) {
 			System.out.println("회원가입 성공");
 		}else {
-			request.getRequestDispatcher("/user/error.html");
+			request.getRequestDispatcher("/WEB-INF/views/user/error.html");
 		}
 		
 	}

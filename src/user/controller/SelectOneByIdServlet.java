@@ -33,9 +33,9 @@ public class SelectOneByIdServlet extends HttpServlet {
 		User user = new UserService().printOneById(userId);
 		if(user != null) {
 			request.setAttribute("user", user);
-			request.getRequestDispatcher("/user/myInfo.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/user/myInfo.jsp").forward(request, response);
 		}else {
-			request.getRequestDispatcher("/user/error.html").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/views/user/error.html").forward(request, response);
 		}
 	}
 

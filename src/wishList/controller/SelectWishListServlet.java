@@ -32,15 +32,18 @@ public class SelectWishListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
+		String userName = request.getParameter("userName");
 		System.out.println(userId);
 		List<WishList> wList = new WishListService().selectWishList(userId);
-		for(WishList wistList : wList) {
-			System.out.println(wistList.toString());
-		}
-		System.out.println(wList.isEmpty());
+//		for(WishList wistList : wList) {
+//			System.out.println(wistList.toString());
+//		}
+//		System.out.println(wList.isEmpty());
 		//if(!wList.isEmpty()) {
+			request.setAttribute("userId", userId);
+			request.setAttribute("userName", userName);
 			request.setAttribute("wList", wList);
-			request.getRequestDispatcher("/user/wishList.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/wishList/wishList.jsp").forward(request, response);
 		//}else {
 			//request.getRequestDispatcher("/user/ErrorWishList.jsp").forward(request, response);
 		//}

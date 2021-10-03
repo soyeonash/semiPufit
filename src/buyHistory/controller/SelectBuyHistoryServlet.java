@@ -1,25 +1,28 @@
-package wishList.controller;
+package buyHistory.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import wishList.model.service.WishListService;
+import buyHistory.model.vo.BuyHistory;
+import buyHistory.service.BuyHistoryService;
 
 /**
- * Servlet implementation class RemoveWishListServlet
+ * Servlet implementation class SelectBuyHistoryServlet
  */
-@WebServlet("/wishlist/remove")
-public class RemoveWishListServlet extends HttpServlet {
+@WebServlet("/buyhistory/select")
+public class SelectBuyHistoryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveWishListServlet() {
+    public SelectBuyHistoryServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,13 +31,15 @@ public class RemoveWishListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String userId = request.getParameter("userId");
-		int wishListNo = Integer.parseInt(request.getParameter("wishListNo"));
-		System.out.println(wishListNo);
-		int result = new WishListService().removeWishList(wishListNo);
-		System.out.println(result);
-		if(result > 0) {
-			response.sendRedirect("/wishlist/select?userId="+userId);
+		String userName = request.getParameter("userName");
+		List<BuyHistory> bList = new BuyHistoryService().selectBuyHistoryList(userId);
+		if(!bList.isEmpty()) {
+			request.setAttribute("userId", userId);
+			request.setAttribute("userName", userName);
+			request.setAttribute("bList", bList);
+			request.getRequestDispatcher("/WEB-INF/views/buyHistory/buyHistory.jsp").forward(request, response);
 		}else {
 			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}

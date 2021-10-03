@@ -32,9 +32,9 @@ public class LogoutServlet extends HttpServlet {
 		if(session != null) {
 			System.out.println("탈퇴완료");
 			session.invalidate();
-			request.getRequestDispatcher("/user/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(request, response); // 로그인이 안된상태에서의 메인페이지로 이동
 		}else {
-			request.getRequestDispatcher("/user/error.html").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
 		
 	}

@@ -14,7 +14,6 @@ public class User {
 	private String admin;
 	private Date enrollDate;
 	
-	
 	public User(String userId, String userPwd, String userName, String userEmail, String userPhone, String admin,
 			Date enrollDate) {
 		super();

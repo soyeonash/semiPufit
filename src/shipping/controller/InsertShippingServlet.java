@@ -47,7 +47,7 @@ public class InsertShippingServlet extends HttpServlet {
 			if(result > 0) {
 				out.print(result);
 			}else {
-				request.getRequestDispatcher("/user/error.html").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 			}
 		}else {
 			out.print(3);

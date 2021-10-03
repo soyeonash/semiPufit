@@ -1,4 +1,4 @@
-package wishList.controller;
+package buyHistory.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import wishList.model.service.WishListService;
+import buyHistory.model.vo.BuyHistory;
 
 /**
- * Servlet implementation class RemoveWishListServlet
+ * Servlet implementation class BuyHistorySuccessServlet
  */
-@WebServlet("/wishlist/remove")
-public class RemoveWishListServlet extends HttpServlet {
+@WebServlet("/buyhistory/success")
+public class BuyHistorySuccessServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveWishListServlet() {
+    public BuyHistorySuccessServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,15 +29,13 @@ public class RemoveWishListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
-		int wishListNo = Integer.parseInt(request.getParameter("wishListNo"));
-		System.out.println(wishListNo);
-		int result = new WishListService().removeWishList(wishListNo);
-		System.out.println(result);
-		if(result > 0) {
-			response.sendRedirect("/wishlist/select?userId="+userId);
-		}else {
-			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
-		}
+		String orderNo = request.getParameter("orderNo");
+		int price = Integer.parseInt(request.getParameter("price"));
+		String productName = request.getParameter("productName");
+		
+		request.setAttribute("buyHistory", new BuyHistory(orderNo, price, productName, userId));
+		request.getRequestDispatcher("/WEB-INF/views/payment/successPayment.jsp").forward(request, response);
+		
 		
 	}
 

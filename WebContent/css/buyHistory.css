@@ -1,0 +1,153 @@
+@charset "UTF-8";
+
+body, html{
+    margin:0px;
+    padding:0px;
+    width:100%;
+    
+    font-family: 'Jua', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color:black;
+}
+a:active{
+    color:black;
+}
+a:visited{
+    color:black;
+}
+
+
+#content{
+    width:100%;
+    position:relative;
+}
+
+    .mypage-main{
+        width:1200px;
+        height:900px;
+        background-color:honeydew;
+        border : 1px solid rgb(216, 230, 216);
+        position:absolute;
+        left:50%;
+        transform:translateX(-50%);
+    }
+
+    .sidebar{
+        width:300px;
+        height:800px;
+        
+        float:left;
+        margin-top:50px;
+    }
+    .page-content{
+        width:900px;
+        height:100%;
+        
+        float:left;
+    }
+
+    .side{
+        width:270px;
+        height:250px;
+        margin:0px;
+        padding:0px;
+        background-color:white;
+        margin-left:30px;
+    }
+    .menu{
+        width:100%;
+        height:50px;
+        margin:0px;
+        padding:0px;
+        background-color:white;
+        border : 1px solid rgb(179, 211, 0);
+        box-sizing: border-box;
+    
+    }
+
+    .menu:hover{
+        background-color:rgb(241, 238, 228);
+        color:rgb(0, 0, 0);
+    }
+
+    .menu>p{
+        padding:0px;
+        margin : 0px;
+        font-size:17px;
+        line-height:50px;
+        margin-left:30px;
+        font-family: 'Jua', sans-serif;
+    }
+
+    #menu-bar{
+        color:white;
+        background-color:rgb(216, 230, 216);
+        font-size:18px;
+    }
+    .main-content{
+        width:840px;
+        height:650px;
+        border : 1px solid rgb(179, 211, 0);
+        margin-left:30px;
+        margin-top:50px;
+        background-color:white;
+    }
+        .div-information{
+            width:800px;
+            height:50px;
+            border-bottom : 2px solid rgb(25, 0, 69);
+            margin-left:20px;
+            margin-top:20px;
+        }
+        .div-information>p{
+            font-size:20px;
+            line-height:55px;
+            margin:0px;
+            padding:0px;
+            margin-left:20px;
+            margin-bottom:10px;
+        }
+
+      
+table.title {
+    width: 800px;
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+    border-left: 1px solid #ccc;
+    margin: 10px 5px;
+    margin-left : 20px;
+    margin-top : 30px;
+
+  }
+  
+  table.title thead th {
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 2px solid #c00;
+    background: #b1daff;
+  }
+  table.title tbody th {
+    line-height:60px;
+    font-size : 15px;
+    color : rgb(0, 0, 0);
+    font-weight: bold;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: #ffffff;
+  }
+
+  table.title td {
+    padding: 10px;
+    font-size:14px;
+    background-color:white;
+    text-align: center;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }

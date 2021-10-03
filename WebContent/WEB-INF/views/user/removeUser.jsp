@@ -10,8 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/remove.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/remove.css">
     <title>회원탈퇴</title>
 </head>
 <body>
@@ -22,22 +21,22 @@
                     <div class="menu" id="menu-bar">
                         <p>마이페이지</p>
                     </div>
-                    <a href="">
+                    <a href="/user/mypage?userId=${userId }">
                         <div class="menu">
                             <p>회원정보 조회 / 수정</p>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="/buyhistory/select?userId=${userId }&userName=${userName }">
                         <div class="menu">
                             <p>구매 내역</p>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="/wishlist/select?userId=${userId }&userName=${userName }">
                         <div class="menu">
                             <p>찜 목록</p>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="/user/removePage?userId=${userId }&userName=${userName }">
                         <div class="menu">
                             <p>회원 탈퇴</p>
                         </div>
@@ -54,7 +53,7 @@
                             <p>회원님의 탈퇴를 위해 </p> <p style="color:red;">&nbsp;비밀번호를 한번 더 입력</p> <p>해주시기 바랍니다</p>
                         </div>
                         <div id="pw-div">
-                        	<input type="hidden" name="user-id" value="${user.userId }">
+                        	<input type="hidden" name="user-id" value="${userId }">
                             <input type="password" name="user-pw" id="user-pw" placeholder="비밀번호를 입력해주세요">
                         </div>
                         <input type="submit" value="회원탈퇴" class="remove-button">

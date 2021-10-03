@@ -34,7 +34,7 @@ public class RemoveShippingServlet extends HttpServlet {
 		if(result > 0) {
 			response.sendRedirect("/user/practice?userId=" + userId);
 		}else {
-			request.getRequestDispatcher("/user/error.html").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
 	}
 

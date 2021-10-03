@@ -39,7 +39,7 @@ public class SelectShippingListServlet extends HttpServlet {
 		// 장바구니 리스트 가져오기
 		if(!sList.isEmpty()) {
 			request.setAttribute("sList", sList);
-			request.getRequestDispatcher("/user/userPayment.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/payment/userPayment.jsp").forward(request, response);
 		}else {
 			out.print("NULL");
 		}

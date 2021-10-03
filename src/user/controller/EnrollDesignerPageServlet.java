@@ -1,4 +1,4 @@
-package wishList.controller;
+package user.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,19 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import wishList.model.service.WishListService;
-
 /**
- * Servlet implementation class RemoveWishListServlet
+ * Servlet implementation class EnrollDesignerPageServlet
  */
-@WebServlet("/wishlist/remove")
-public class RemoveWishListServlet extends HttpServlet {
+@WebServlet("/designer/enrollPage")
+public class EnrollDesignerPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveWishListServlet() {
+    public EnrollDesignerPageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,16 +26,8 @@ public class RemoveWishListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
-		int wishListNo = Integer.parseInt(request.getParameter("wishListNo"));
-		System.out.println(wishListNo);
-		int result = new WishListService().removeWishList(wishListNo);
-		System.out.println(result);
-		if(result > 0) {
-			response.sendRedirect("/wishlist/select?userId="+userId);
-		}else {
-			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
-		}
+		
+		request.getRequestDispatcher("/WEB-INF/views/designer/designerEnroll.jsp").forward(request, response);
 		
 	}
 

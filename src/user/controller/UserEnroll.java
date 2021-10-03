@@ -49,9 +49,9 @@ public class UserEnroll extends HttpServlet {
 		int result = new UserService().userEnroll(user);
 		
 		if(result > 0) {
-			request.getRequestDispatcher("/user/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(request, response);
 		}else {
-			request.getRequestDispatcher("/user/error.html");
+			request.getRequestDispatcher("/WEB-INF/views/user/error.html");
 		}
 		
 		

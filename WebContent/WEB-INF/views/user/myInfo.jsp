@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="../css/myInfo.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/myInfo.css">
     <title>마이 페이지</title>
 </head>
 <body>
@@ -214,22 +214,22 @@
                     <div class="menu" id="menu-bar">
                         <p>마이페이지</p>
                     </div>
-                    <a href="">
+                    <a href="/user/mypage?userId=${user.userId }">
                         <div class="menu">
                             <p>회원정보 조회 / 수정</p>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="/buyhistory/select?userId=${user.userId }&userName=${user.userName }">
                         <div class="menu">
                             <p>구매 내역</p>
                         </div>
                     </a>
-                    <a href="/wishlist/select?userId=${user.userId }">
+                    <a href="/wishlist/select?userId=${user.userId }&userName=${user.userName }">
                         <div class="menu">
                             <p>찜 목록</p>
                         </div>
                     </a>
-                    <a href="/user/removeUser.jsp">
+                    <a href="/user/removePage?userId=${user.userId }&userName=${user.userName }">
                         <div class="menu">
                             <p>회원 탈퇴</p>
                         </div>

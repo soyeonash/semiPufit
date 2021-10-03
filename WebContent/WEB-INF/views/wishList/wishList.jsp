@@ -23,22 +23,22 @@
                     <div class="menu" id="menu-bar">
                         <p>마이페이지</p>
                     </div>
-                    <a href="">
+                    <a href="/user/mypage?userId=${userId }">
                         <div class="menu">
                             <p>회원정보 조회 / 수정</p>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="/buyhistory/select?userId=${userId }&userName=${userName }">
                         <div class="menu">
                             <p>구매 내역</p>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="/wishlist/select?userId=${userId }">
                         <div class="menu">
                             <p>찜 목록</p>
                         </div>
                     </a>
-                    <a href="">
+                    <a href="/user/removePage?userId=${userId }&userName=${userName }">
                         <div class="menu">
                             <p>회원 탈퇴</p>
                         </div>
@@ -48,7 +48,7 @@
             <div class="page-content">
                 <div class="main-content">
                     <div class="div-information">
-                        <p>${userId }님의 찜목록</p>
+                        <p>${userName }님의 찜목록</p>
                     </div>
                     <div id="div-wish">
                     	<c:forEach items="${wList }" var="wishList" varStatus="index">

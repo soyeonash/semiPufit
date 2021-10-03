@@ -46,7 +46,7 @@ public class UserModifyServlet extends HttpServlet {
 		if(result > 0) {
 			response.sendRedirect("/user/mypage"); // selectId 출력후 페이지 이동
 		}else {
-			request.getRequestDispatcher("/user/error.html").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
 				
 	}

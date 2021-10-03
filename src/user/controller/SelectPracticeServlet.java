@@ -40,7 +40,7 @@ public class SelectPracticeServlet extends HttpServlet {
 		if(user != null) {
 			request.setAttribute("user", user);
 			request.setAttribute("sList", sList);
-			request.getRequestDispatcher("/user/userPayment.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/payment/userPayment.jsp").forward(request, response);
 		}
 	}
 

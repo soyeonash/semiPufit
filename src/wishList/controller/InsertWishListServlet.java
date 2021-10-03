@@ -38,7 +38,7 @@ public class InsertWishListServlet extends HttpServlet {
 		if(result > 0) {
 			request.getRequestDispatcher("/").forward(request, response);
 		}else {
-			request.getRequestDispatcher("/user/error.html").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/user/error.html").forward(request, response);
 		}
 		
 	}
