@@ -21,7 +21,7 @@ public class UserService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new UserDAO().userEnroll(conn, user);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
@@ -42,7 +42,7 @@ public class UserService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new UserDAO().userIdCheck(conn, userId);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
@@ -64,7 +64,7 @@ public class UserService {
 		User user = null;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			user = new UserDAO().loginUser(conn, loginId, loginPw);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -81,7 +81,7 @@ public class UserService {
 		String userId = null;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			userId = new UserDAO().selectForId(conn, userName, userEmail);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -98,7 +98,7 @@ public class UserService {
 		Connection conn = null;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			userPw = new UserDAO().selectForPw(userId, userEmail, conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -115,7 +115,7 @@ public class UserService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new UserDAO().modifyUserPassWord(conn, userId);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
@@ -137,7 +137,7 @@ public class UserService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new UserDAO().modifyDesignerPassWord(conn, userId);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
@@ -159,7 +159,7 @@ public class UserService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new UserDAO().deleteUser(conn, userId, userPwd);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
@@ -181,7 +181,7 @@ public class UserService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new UserDAO().modifyUser(conn, user);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
@@ -203,7 +203,7 @@ public class UserService {
 		Connection conn = null;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			user = new UserDAO().printOneById(conn, userId);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -220,7 +220,7 @@ public class UserService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new UserDAO().UserModify(userId, userPwd, userEmail, userPhone, conn);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);

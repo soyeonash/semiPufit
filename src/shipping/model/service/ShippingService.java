@@ -22,7 +22,7 @@ public class ShippingService {
 		List<Shipping> shipping = null;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			shipping = new ShippingDAO().selectShippingList(userId, conn);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -39,7 +39,7 @@ public class ShippingService {
 		int count = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			count = new ShippingDAO().userCheckShipping(conn, shipping);
 			
 		} catch (SQLException e) {
@@ -58,7 +58,7 @@ public class ShippingService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new ShippingDAO().insertShipping(conn, shipping);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
@@ -80,7 +80,7 @@ public class ShippingService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new ShippingDAO().removeShipping(shippingNo, conn);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);

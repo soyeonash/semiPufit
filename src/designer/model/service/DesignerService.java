@@ -21,7 +21,7 @@ public class DesignerService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new DesignerDAO().designerEnroll(conn, designer);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
@@ -44,7 +44,7 @@ public class DesignerService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			designer = new DesignerDAO().loginDesigner(designerId, designerPwd, conn);
 		} catch (SQLException e) {
 			e.printStackTrace();

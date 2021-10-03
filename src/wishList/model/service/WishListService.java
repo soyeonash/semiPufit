@@ -25,7 +25,7 @@ public class WishListService {
 		Connection conn = null;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new WishListDAO().insertWishList(userId, productCode, conn);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);
@@ -48,7 +48,7 @@ public class WishListService {
 		List<WishList> wList = null;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			wList = new WishListDAO().selectWishList(conn, userId);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -66,7 +66,7 @@ public class WishListService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new WishListDAO().removeWishList(wishListNo, conn);
 			if(result > 0) {
 				JDBCTemplate.commit(conn);

@@ -24,7 +24,7 @@ public class BuyHistoryService {
 		int result = 0;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			result = new BuyHistoryDAO().insertBuyHistory(conn, buyHistory);
 			if(result > 0) {
 				JDBCTemplate.commit(conn); 
@@ -47,7 +47,7 @@ public class BuyHistoryService {
 		List<BuyHistory> bList = null;
 		
 		try {
-			conn = jdbcTemplate.createStatement();
+			conn = jdbcTemplate.createConnection();
 			bList = new BuyHistoryDAO().selectBuyHistoryList(userId, conn);
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -25,7 +25,7 @@ private static JDBCTemplate instance;
 		return instance;
 	}
 	
-	public Connection createStatement() throws SQLException {
+	public Connection createConnection() throws SQLException {
 		String url = "jdbc:oracle:thin:@soyeon.cqpads0eq7n2.ap-northeast-2.rds.amazonaws.com:1521:ORCL";
 		String user = "soyeon";
 		String password = "soyeon123";
